@@ -49,7 +49,7 @@ struct UserInformationView: View {
                             .frame(width: 300,height: 60)
                             .background(
                                 RoundedRectangle(cornerRadius: 40,style: .continuous)
-                                    .fill(Color.indigo)
+                                    .fill(Color.blue)
                                     .shadow(radius: 5)
                             )
                             .padding()
