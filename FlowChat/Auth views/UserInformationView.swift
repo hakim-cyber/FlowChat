@@ -35,7 +35,7 @@ struct UserInformationView: View {
                         .scaledToFit()
                         .background(.black)
                         .clipShape(Circle())
-                        .frame(width: 100)
+                        .frame(width: 200)
                         .onTapGesture {
                             showPicker.toggle()
                         }
