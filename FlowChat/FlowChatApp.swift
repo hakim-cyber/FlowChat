@@ -10,6 +10,7 @@ import Firebase
 
 @main
 struct FlowChatApp: App {
+    @StateObject var userDataStore = UserDataStore()
     init(){
         FirebaseApp.configure()
     }
@@ -18,6 +19,7 @@ struct FlowChatApp: App {
         WindowGroup {
         
                     StartView()
+                .environmentObject(userDataStore)
                 
             
            

@@ -9,10 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var screen = UIScreen.main.bounds
+    @EnvironmentObject var userDataStore:UserDataStore
     var body: some View {
         ZStack {
           bacground
                
+        }
+        .onAppear{
+            userDataStore.fetchUsers()
+     
         }
         .ignoresSafeArea()
         

@@ -21,6 +21,8 @@
 		086FFDA62A2A0E9500456A70 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDA52A2A0E9500456A70 /* RegisterView.swift */; };
 		086FFDA82A2A159900456A70 /* UserInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDA72A2A159900456A70 /* UserInformationView.swift */; };
 		086FFDAA2A2A168E00456A70 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDA92A2A168E00456A70 /* ImagePicker.swift */; };
+		086FFDAE2A2A2BAC00456A70 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDAD2A2A2BAC00456A70 /* UserData.swift */; };
+		086FFDB02A2A2D5400456A70 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDAF2A2A2D5400456A70 /* structs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		086FFDA52A2A0E9500456A70 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		086FFDA72A2A159900456A70 /* UserInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationView.swift; sourceTree = "<group>"; };
 		086FFDA92A2A168E00456A70 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		086FFDAD2A2A2BAC00456A70 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		086FFDAF2A2A2D5400456A70 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 				086FFD972A2A009F00456A70 /* GoogleService-Info.plist */,
 				086FFD852A29302C00456A70 /* FlowChatApp.swift */,
 				086FFD872A29302C00456A70 /* ContentView.swift */,
+				086FFDAC2A2A2B9A00456A70 /* Data */,
 				086FFDA02A2A024600456A70 /* Auth views */,
 				086FFDAB2A2A19A600456A70 /* features */,
 				086FFD892A29302F00456A70 /* Assets.xcassets */,
@@ -108,6 +113,15 @@
 				086FFDA92A2A168E00456A70 /* ImagePicker.swift */,
 			);
 			path = features;
+			sourceTree = "<group>";
+		};
+		086FFDAC2A2A2B9A00456A70 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				086FFDAD2A2A2BAC00456A70 /* UserData.swift */,
+				086FFDAF2A2A2D5400456A70 /* structs.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +206,8 @@
 				086FFD882A29302C00456A70 /* ContentView.swift in Sources */,
 				086FFD942A29303D00456A70 /* Colors.swift in Sources */,
 				086FFD862A29302C00456A70 /* FlowChatApp.swift in Sources */,
+				086FFDAE2A2A2BAC00456A70 /* UserData.swift in Sources */,
+				086FFDB02A2A2D5400456A70 /* structs.swift in Sources */,
 				086FFDA82A2A159900456A70 /* UserInformationView.swift in Sources */,
 				086FFDA62A2A0E9500456A70 /* RegisterView.swift in Sources */,
 				086FFDAA2A2A168E00456A70 /* ImagePicker.swift in Sources */,
