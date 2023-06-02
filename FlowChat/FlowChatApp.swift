@@ -6,12 +6,22 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct FlowChatApp: App {
+    init(){
+        FirebaseApp.configure()
+    }
+   
     var body: some Scene {
         WindowGroup {
-            ContentView()
+        
+                    StartView()
+                
+            
+           
         }
+        
     }
 }
