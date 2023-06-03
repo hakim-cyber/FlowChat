@@ -148,8 +148,8 @@
 		08BC392B2A2BB94300C4F8D3 /* lottie */ = {
 			isa = PBXGroup;
 			children = (
-				0868B2A92A2BCAAA000AC02E /* 145481-planet-earth-and-rocket.json */,
 				0868B2AD2A2BCD4F000AC02E /* LottieView.swift */,
+				0868B2A92A2BCAAA000AC02E /* 145481-planet-earth-and-rocket.json */,
 			);
 			path = lottie;
 			sourceTree = "<group>";

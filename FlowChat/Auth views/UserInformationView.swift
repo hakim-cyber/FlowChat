@@ -12,7 +12,7 @@ import Firebase
 struct UserInformationView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     
-    @State private var startanimation = true
+    @State private var startanimation = false
     @State private var userName = ""
     @State private var image:UIImage?
     @State private var showPicker = false
