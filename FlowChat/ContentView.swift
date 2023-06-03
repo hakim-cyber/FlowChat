@@ -14,10 +14,11 @@ struct ContentView: View {
         ZStack {
          
         MainView()
+        .transition(.move(edge: .bottom))
              
                
         }
-        .transition(.move(edge: .bottom))
+       
         .onAppear{
             userDataStore.fetchUsers()
      

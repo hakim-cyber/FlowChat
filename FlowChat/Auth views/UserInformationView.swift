@@ -91,7 +91,7 @@ struct UserInformationView: View {
         
         let user = User(id: uidOfUser, userName: userName, profileImage: imageString, chats: [])
         
-        userDataStore.updateorAddUser(user: user)
+        userDataStore.updateOrAddUser(user: user)
       
         
        checkInforationIsAdded()

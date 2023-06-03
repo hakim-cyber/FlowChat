@@ -42,10 +42,9 @@ struct LoginView: View {
                             .padding(.horizontal,20)
                             .padding(.vertical,2)
                         
-                            .onChange(of: email){ newEmail in
-                                validateEmail(email: newEmail)
-                            }
-                        
+                            .onChange(of: email) { newEmail in
+                                                        validateEmail(email: newEmail)
+                                                    }
                         
                         SecureField("Password", text: $password)
                             .padding()

@@ -33,13 +33,16 @@ struct MainView: View {
         }
     }
     var content:some View{
-        ScrollView(.vertical){
-            
+        VStack{
+            Spacer()
+            ScrollView(.vertical){
+                
+            }
+            .background(.white)
+            .frame(width: screen.width,height: screen.height * 0.65)
+            .roundedCorner(30, corners: [.topLeft,.topRight])
+            .ignoresSafeArea()
         }
-        .background(.white)
-        .frame(width: screen.width,height: screen.height * 0.65)
-        .roundedCorner(30, corners: [.topLeft,.topRight])
-        .ignoresSafeArea()
     }
     var ListOfAllUsers:some View{
         ScrollView(.horizontal,showsIndicators: false){
