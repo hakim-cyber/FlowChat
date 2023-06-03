@@ -11,6 +11,7 @@ import Firebase
 struct RegisterView: View {
     @AppStorage("userLogedIn") var userLogedIn = false
     @State private var isEmailValid = false
+    @State private var startanimation = false
     @State private var email = ""
     @State private var password = ""
     @State private var error = ""
@@ -73,7 +74,7 @@ struct RegisterView: View {
                                 .frame(width: 300,height: 60)
                                 .background(
                                     RoundedRectangle(cornerRadius: 40,style: .continuous)
-                                        .fill(Color.blue)
+                                        .fill(Color.orange)
                                         .shadow(radius: 5)
                                 )
                                 .padding()
@@ -81,18 +82,28 @@ struct RegisterView: View {
                         .disabled(!isEmailValid)
                     }
                     .padding(.horizontal)
+                    
+                    if startanimation{
+                        //Lottie
+                     LottieView()
+                            .scaledToFit()
+                    }
                 }
                 .onAppear{
                     Auth.auth().addStateDidChangeListener{auth,user in
                         if user != nil{
                             withAnimation(.interactiveSpring(response: 0.6,dampingFraction: 0.6)){
+                                self.startanimation = false
                                 userLogedIn = true
+                                
                             }
                         }
                     }
                 }
                 .transition(.move(edge: .bottom))
            
+                
+                
             }
         
         }
@@ -103,6 +114,7 @@ struct RegisterView: View {
            isEmailValid = emailPredicate.evaluate(with: email)
        }
     private func register() {
+        self.startanimation = true
            Auth.auth().createUser(withEmail: email, password: password) { _, error in
                if let error = error {
                    self.error = error.localizedDescription

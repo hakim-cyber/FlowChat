@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0868B2A62A2BC7A7000AC02E /* 86826-chat-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 0868B2A52A2BC7A7000AC02E /* 86826-chat-icon.json */; };
 		086FFD862A29302C00456A70 /* FlowChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFD852A29302C00456A70 /* FlowChatApp.swift */; };
 		086FFD882A29302C00456A70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFD872A29302C00456A70 /* ContentView.swift */; };
 		086FFD8A2A29302F00456A70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086FFD892A29302F00456A70 /* Assets.xcassets */; };
@@ -25,9 +26,12 @@
 		086FFDB02A2A2D5400456A70 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDAF2A2A2D5400456A70 /* structs.swift */; };
 		0898F2322A2B348D00BD26E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2312A2B348D00BD26E8 /* MainView.swift */; };
 		0898F2342A2B5F5300BD26E8 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */; };
+		08BC392A2A2BB7FF00C4F8D3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 08BC39292A2BB7FF00C4F8D3 /* Lottie */; };
+		08BC392D2A2BB98A00C4F8D3 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC392C2A2BB98A00C4F8D3 /* LottieView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0868B2A52A2BC7A7000AC02E /* 86826-chat-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "86826-chat-icon.json"; sourceTree = "<group>"; };
 		086FFD822A29302C00456A70 /* FlowChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlowChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086FFD852A29302C00456A70 /* FlowChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowChatApp.swift; sourceTree = "<group>"; };
 		086FFD872A29302C00456A70 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +48,7 @@
 		086FFDAF2A2A2D5400456A70 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 		0898F2312A2B348D00BD26E8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		08BC392C2A2BB98A00C4F8D3 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +59,7 @@
 				086FFD9B2A2A014D00456A70 /* FirebaseAuth in Frameworks */,
 				086FFD9D2A2A014D00456A70 /* FirebaseFirestore in Frameworks */,
 				086FFD9F2A2A014D00456A70 /* FirebaseFirestoreSwift in Frameworks */,
+				08BC392A2A2BB7FF00C4F8D3 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +88,7 @@
 				086FFD972A2A009F00456A70 /* GoogleService-Info.plist */,
 				086FFD852A29302C00456A70 /* FlowChatApp.swift */,
 				086FFD872A29302C00456A70 /* ContentView.swift */,
+				08BC392B2A2BB94300C4F8D3 /* lottie */,
 				0898F2302A2B346F00BD26E8 /* MainViews */,
 				086FFDAC2A2A2B9A00456A70 /* Data */,
 				086FFDA02A2A024600456A70 /* Auth views */,
@@ -138,6 +145,15 @@
 			path = MainViews;
 			sourceTree = "<group>";
 		};
+		08BC392B2A2BB94300C4F8D3 /* lottie */ = {
+			isa = PBXGroup;
+			children = (
+				0868B2A52A2BC7A7000AC02E /* 86826-chat-icon.json */,
+				08BC392C2A2BB98A00C4F8D3 /* LottieView.swift */,
+			);
+			path = lottie;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,6 +174,7 @@
 				086FFD9A2A2A014D00456A70 /* FirebaseAuth */,
 				086FFD9C2A2A014D00456A70 /* FirebaseFirestore */,
 				086FFD9E2A2A014D00456A70 /* FirebaseFirestoreSwift */,
+				08BC39292A2BB7FF00C4F8D3 /* Lottie */,
 			);
 			productName = FlowChat;
 			productReference = 086FFD822A29302C00456A70 /* FlowChat.app */;
@@ -189,6 +206,7 @@
 			mainGroup = 086FFD792A29302C00456A70;
 			packageReferences = (
 				086FFD992A2A014D00456A70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				08BC39282A2BB7FF00C4F8D3 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 086FFD832A29302C00456A70 /* Products */;
 			projectDirPath = "";
@@ -205,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				086FFD8D2A29302F00456A70 /* Preview Assets.xcassets in Resources */,
+				0868B2A62A2BC7A7000AC02E /* 86826-chat-icon.json in Resources */,
 				086FFD982A2A009F00456A70 /* GoogleService-Info.plist in Resources */,
 				086FFD8A2A29302F00456A70 /* Assets.xcassets in Resources */,
 			);
@@ -225,6 +244,7 @@
 				086FFDB02A2A2D5400456A70 /* structs.swift in Sources */,
 				086FFDA82A2A159900456A70 /* UserInformationView.swift in Sources */,
 				086FFDA62A2A0E9500456A70 /* RegisterView.swift in Sources */,
+				08BC392D2A2BB98A00C4F8D3 /* LottieView.swift in Sources */,
 				0898F2322A2B348D00BD26E8 /* MainView.swift in Sources */,
 				086FFDAA2A2A168E00456A70 /* ImagePicker.swift in Sources */,
 				086FFDA42A2A0E8B00456A70 /* LoginView.swift in Sources */,
@@ -439,6 +459,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		08BC39282A2BB7FF00C4F8D3 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -456,6 +484,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 086FFD992A2A014D00456A70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		08BC39292A2BB7FF00C4F8D3 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08BC39282A2BB7FF00C4F8D3 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -12,7 +12,7 @@ import Firebase
 struct UserInformationView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     
-    
+    @State private var startanimation = false
     @State private var userName = ""
     @State private var image:UIImage?
     @State private var showPicker = false
@@ -24,57 +24,63 @@ struct UserInformationView: View {
             if InfoAdded {
                 ContentView()
             }else{
-                VStack(spacing: 40){
-                    Spacer()
-                    TextField("Username", text: $userName)
-                        .padding()
-                        .background(.thinMaterial)
-                        .foregroundColor( .white)
-                        .cornerRadius(30)
-                        .shadow(color:.gray,radius: 5)
-                        .padding(.horizontal,20)
-                        .padding(.vertical,2)
-                    
-                    Image(uiImage: image ?? UIImage())
-                        .resizable()
-                        .scaledToFit()
-                        .background(.black)
-                        .clipShape(Circle())
-                        .frame(width: 200)
-                        .onTapGesture {
-                            showPicker.toggle()
-                        }
-                    Spacer()
-                    Button{
-                       addUserInfo()
-                    }label: {
-                        Text("Next")
-                            .bold()
-                            .foregroundColor(.white)
-                            .frame(width: 300,height: 60)
-                            .background(
-                                RoundedRectangle(cornerRadius: 40,style: .continuous)
-                                    .fill(Color.blue)
-                                    .shadow(radius: 5)
-                            )
+                ZStack{
+                    VStack(spacing: 40){
+                        Spacer()
+                        TextField("Username", text: $userName)
                             .padding()
+                            .background(.thinMaterial)
+                            .foregroundColor( .white)
+                            .cornerRadius(30)
+                            .shadow(color:.gray,radius: 5)
+                            .padding(.horizontal,20)
+                            .padding(.vertical,2)
+                        
+                        Image(uiImage: image ?? UIImage())
+                            .resizable()
+                            .scaledToFit()
+                            .background(.black)
+                            .clipShape(Circle())
+                            .frame(width: 200)
+                            .onTapGesture {
+                                showPicker.toggle()
+                            }
+                        Spacer()
+                        Button{
+                            addUserInfo()
+                        }label: {
+                            Text("Next")
+                                .bold()
+                                .foregroundColor(.white)
+                                .frame(width: 300,height: 60)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 40,style: .continuous)
+                                        .fill(Color.orange)
+                                        .shadow(radius: 5)
+                                )
+                                .padding()
+                        }
+                        .disabled(userName == "" || image == nil)
                     }
-                    .disabled(userName == "" || image == nil)
-                }
-                .sheet(isPresented: $showPicker){
-                    ImagePicker(image: $image)
-                }
-                .onAppear{
-                   
-                  checkInforationIsAdded()
-                  
+                    .sheet(isPresented: $showPicker){
+                        ImagePicker(image: $image)
+                    }
+                    .onAppear{
+                        
+                        checkInforationIsAdded()
+                        
+                    }
+                    if startanimation {
+                        LottieView()
+                            .scaledToFit()
+                    }
                 }
             }
         }
     }
     func addUserInfo() {
         guard let uidOfUser = Auth.auth().currentUser?.uid else { return }
-        
+        self.startanimation = true
         guard let image = image, let imageData = image.jpegData(compressionQuality: 0.75) else {
             print("Error: Unable to get image or convert to data")
             return
@@ -115,7 +121,7 @@ struct UserInformationView: View {
                     if document.exists {
                         DispatchQueue.main.async {
                         withAnimation(.interactiveSpring(response: 0.6,dampingFraction: 0.6)){
-                         
+                            self.startanimation = false
                                 self.InfoAdded = true
                             }
                         }

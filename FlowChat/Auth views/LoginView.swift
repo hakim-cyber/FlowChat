@@ -11,6 +11,7 @@ import Firebase
 struct LoginView: View {
     @AppStorage("userLogedIn") var userLogedIn = false
     @AppStorage("InfoAdded")  var InfoAdded = false
+    @State private var startanimation = false
     @State private var error = ""
     @State private var email = ""
     @State private var password = ""
@@ -71,7 +72,7 @@ struct LoginView: View {
                                 .frame(width: 300,height: 60)
                                 .background(
                                     RoundedRectangle(cornerRadius: 40,style: .continuous)
-                                        .fill(Color.blue)
+                                        .fill(Color.orange)
                                         .shadow(radius: 5)
                                 )
                                 .padding()
@@ -79,11 +80,16 @@ struct LoginView: View {
                         .disabled(!isEmailValid)
                     }
                     .padding(.horizontal)
+                    if startanimation{
+                        LottieView()
+                            .scaledToFit()
+                    }
                 }
                 .onAppear{
                     Auth.auth().addStateDidChangeListener{auth,user in
                         if user != nil{
                             withAnimation(.interactiveSpring(response: 0.6,dampingFraction: 0.6)){
+                                self.startanimation = false
                                 userLogedIn = true
                                 InfoAdded = true
                             }
@@ -98,6 +104,7 @@ struct LoginView: View {
         
     }
    private func login(){
+       self.startanimation = true
         Auth.auth().signIn(withEmail: email, password: password){result , error in
             if let error = error {
                             self.error = error.localizedDescription

@@ -50,7 +50,7 @@ struct StartView: View {
                 VStack(alignment: .leading, spacing: 5){
                     Text("Elevate")
                     Text("messaging")
-                        .foregroundColor(Color.accentColor)
+                        .foregroundColor(Color.orange)
                     Text("capabilities")
               
                 }

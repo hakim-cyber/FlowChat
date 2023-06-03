@@ -114,7 +114,7 @@ struct MainView: View {
                 Text("48 Messages")
                     .fontWeight(.bold)
                     .font(.title)
-                    .foregroundColor(.white)
+                    .foregroundColor(.orange)
                 Spacer()
             }
             .padding(.horizontal,20)
