@@ -15,6 +15,7 @@ struct ContentView: View {
           bacground
                
         }
+        .transition(.move(edge: .bottom))
         .onAppear{
             userDataStore.fetchUsers()
      
@@ -32,7 +33,6 @@ struct ContentView: View {
                 Image("background1")
                     .resizable()
                     .aspectRatio( contentMode: .fit)
-                    .transition(.move(edge: .bottom))
             }
             .padding(.top)
             .ignoresSafeArea()
