@@ -37,7 +37,7 @@ struct StartView: View {
     var background:some View{
 
         return ZStack{
-            Image("photo1")
+            Image("photo7")
                 .resizable()
                 .ignoresSafeArea()
          
