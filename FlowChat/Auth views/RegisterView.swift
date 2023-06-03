@@ -44,10 +44,9 @@ struct RegisterView: View {
                             .padding(.horizontal,20)
                             .padding(.vertical,2)
                         
-                            .onChange(of: email){ newEmail in
-                                validateEmail(email: newEmail)
-                            }
-                        
+                            .onChange(of: email) { newEmail in
+                                                        validateEmail(email: newEmail)
+                                                    }
                         
                         SecureField("Password", text: $password)
                             .padding()
@@ -103,15 +102,13 @@ struct RegisterView: View {
            let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
            isEmailValid = emailPredicate.evaluate(with: email)
        }
-    func register(){
-        Auth.auth().createUser(withEmail: email, password: password){result,error in
-            if error != nil{
-                self.error =   (error?.localizedDescription ?? "") as String
-                return
-            }
-          
-        }
-    }
+    private func register() {
+           Auth.auth().createUser(withEmail: email, password: password) { _, error in
+               if let error = error {
+                   self.error = error.localizedDescription
+               }
+           }
+       }
 }
 
 struct RegisterView_Previews: PreviewProvider {

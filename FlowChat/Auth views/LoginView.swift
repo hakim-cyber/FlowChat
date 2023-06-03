@@ -97,10 +97,10 @@ struct LoginView: View {
         }
         
     }
-    func login(){
+   private func login(){
         Auth.auth().signIn(withEmail: email, password: password){result , error in
-            if error != nil{
-                self.error = (error?.localizedDescription ?? "") as String
+            if let error = error {
+                            self.error = error.localizedDescription
             }
         }
     }
