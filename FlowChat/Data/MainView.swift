@@ -10,7 +10,7 @@ import Firebase
 
 struct MainView: View {
     @EnvironmentObject var userDataStore:UserDataStore
-    @State private var screen = UIScreen.main.bounds
+    @State private var screen = UIScreen.main.bounds.size
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chats: [Chat]())}
         
@@ -27,10 +27,11 @@ struct MainView: View {
         }
         .padding(.top)
         .overlay(alignment: .bottom, content: {content})
-        .ignoresSafeArea()
-        .safeAreaInset(edge: .top){
+        .overlay(alignment: .top){
             header
         }
+        .ignoresSafeArea()
+       
     }
     var content:some View{
         VStack{
@@ -39,6 +40,7 @@ struct MainView: View {
                 
             }
             .background(.white)
+            .frame(maxWidth: .infinity,maxHeight:.infinity,alignment:.bottom)
             .frame(width: screen.width,height: screen.height * 0.65)
             .roundedCorner(30, corners: [.topLeft,.topRight])
             .ignoresSafeArea()
