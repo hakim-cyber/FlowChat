@@ -12,7 +12,9 @@ struct ContentView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     var body: some View {
         ZStack {
-          bacground
+         
+        MainView()
+             
                
         }
         .transition(.move(edge: .bottom))

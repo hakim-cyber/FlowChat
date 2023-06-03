@@ -1,6 +1,6 @@
 //
 //  MainView.swift
-//  FlowChat
+//  FlowChat#imageLiteral(resourceName: "ChatApp 2.webp")
 //
 //  Created by aplle on 6/3/23.
 //
@@ -23,9 +23,9 @@ struct MainView: View {
     var body: some View {
         ZStack{
             Color.pink.colorMultiply(.blue).ignoresSafeArea()
-          
             
         }
+        .padding(.top)
         .overlay(alignment: .bottom, content: {content})
         .ignoresSafeArea()
         .safeAreaInset(edge: .top){
@@ -43,8 +43,41 @@ struct MainView: View {
     }
     var ListOfAllUsers:some View{
         ScrollView(.horizontal,showsIndicators: false){
-            
+            HStack(alignment: .top,spacing: 5){
+                Button{
+                    // new chat
+                }label: {
+                    Image(systemName: "plus")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(13)
+                        .background(.ultraThinMaterial)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
+                        .frame(width: 50)
+                    
+                }
+                
+                ForEach(userDataStore.users,id: \.id){user in
+                    VStack{
+                        
+                        
+                        useImage(text: user.profileImage)
+                            .resizable()
+                            .scaledToFit()
+                            .background(.ultraThinMaterial)
+                            .clipShape(Circle())
+                            .frame(width: 50)
+                        Text(user.userName)
+                            .foregroundColor(.white)
+                            .fontWeight(.light)
+                            .font(.system(size: 8))
+                    }
+                }
+            }
         }
+        .padding(.top,20)
+        .padding(.leading)
     }
     var header:some View{
         VStack(spacing: 5){
@@ -82,11 +115,25 @@ struct MainView: View {
                 Text("Contacts")
                     .fontWeight(.light)
                     .foregroundColor(.white)
+                Text("(\(userDataStore.users.count))")
+                    .fontWeight(.ultraLight)
+                    .font(.callout)
+                    .foregroundColor(.white)
+                
                 Spacer()
             }
             .padding(.horizontal,18)
             .padding(.top,14)
+            ListOfAllUsers
         }
+        .padding(.top,34)
+    }
+    func useImage(text:String)->Image{
+        let data = Data(base64Encoded: text) ?? Data()
+        
+        let uiImage = UIImage(data: data) ?? UIImage()
+        
+        return Image(uiImage: uiImage)
     }
     
 }
