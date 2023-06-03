@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0868B2AA2A2BCAAA000AC02E /* 145481-planet-earth-and-rocket.json in Resources */ = {isa = PBXBuildFile; fileRef = 0868B2A92A2BCAAA000AC02E /* 145481-planet-earth-and-rocket.json */; };
-		0868B2AC2A2BCBE2000AC02E /* lottieview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B2AB2A2BCBE2000AC02E /* lottieview.swift */; };
+		0868B2AE2A2BCD4F000AC02E /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0868B2AD2A2BCD4F000AC02E /* LottieView.swift */; };
 		086FFD862A29302C00456A70 /* FlowChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFD852A29302C00456A70 /* FlowChatApp.swift */; };
 		086FFD882A29302C00456A70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFD872A29302C00456A70 /* ContentView.swift */; };
 		086FFD8A2A29302F00456A70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086FFD892A29302F00456A70 /* Assets.xcassets */; };
@@ -28,12 +28,11 @@
 		0898F2322A2B348D00BD26E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2312A2B348D00BD26E8 /* MainView.swift */; };
 		0898F2342A2B5F5300BD26E8 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */; };
 		08BC392A2A2BB7FF00C4F8D3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 08BC39292A2BB7FF00C4F8D3 /* Lottie */; };
-		08BC392D2A2BB98A00C4F8D3 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BC392C2A2BB98A00C4F8D3 /* LottieView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0868B2A92A2BCAAA000AC02E /* 145481-planet-earth-and-rocket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "145481-planet-earth-and-rocket.json"; sourceTree = "<group>"; };
-		0868B2AB2A2BCBE2000AC02E /* lottieview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lottieview.swift; sourceTree = "<group>"; };
+		0868B2AD2A2BCD4F000AC02E /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		086FFD822A29302C00456A70 /* FlowChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlowChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		086FFD852A29302C00456A70 /* FlowChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowChatApp.swift; sourceTree = "<group>"; };
 		086FFD872A29302C00456A70 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -150,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				0868B2A92A2BCAAA000AC02E /* 145481-planet-earth-and-rocket.json */,
-				0868B2AB2A2BCBE2000AC02E /* lottieview.swift */,
+				0868B2AD2A2BCD4F000AC02E /* LottieView.swift */,
 			);
 			path = lottie;
 			sourceTree = "<group>";
@@ -240,12 +239,12 @@
 				0898F2342A2B5F5300BD26E8 /* RoundedCorner.swift in Sources */,
 				086FFD882A29302C00456A70 /* ContentView.swift in Sources */,
 				086FFD942A29303D00456A70 /* Colors.swift in Sources */,
-				0868B2AC2A2BCBE2000AC02E /* lottieview.swift in Sources */,
 				086FFD862A29302C00456A70 /* FlowChatApp.swift in Sources */,
 				086FFDAE2A2A2BAC00456A70 /* UserData.swift in Sources */,
 				086FFDB02A2A2D5400456A70 /* structs.swift in Sources */,
 				086FFDA82A2A159900456A70 /* UserInformationView.swift in Sources */,
 				086FFDA62A2A0E9500456A70 /* RegisterView.swift in Sources */,
+				0868B2AE2A2BCD4F000AC02E /* LottieView.swift in Sources */,
 				0898F2322A2B348D00BD26E8 /* MainView.swift in Sources */,
 				086FFDAA2A2A168E00456A70 /* ImagePicker.swift in Sources */,
 				086FFDA42A2A0E8B00456A70 /* LoginView.swift in Sources */,
