@@ -99,35 +99,39 @@ struct UserInformationView: View {
     }
     func checkInforationIsAdded(){
                guard let uid = Auth.auth().currentUser?.uid else{return}
-               let db = Firestore.firestore()
-               let docRef = db.collection("users").document(uid)
-               
-               docRef.getDocument { (document, error) in
-                   if error != nil{
-                       print(error?.localizedDescription as Any)
-                      
-                       return
-                       
-                   }
-                   if let document = document{
-                       
-                       if document.exists {
-                          
-                           withAnimation(.interactiveSpring()){
-                               self.InfoAdded = true
-                           }
-                       } else {
+        DispatchQueue.global().async {
+            let db = Firestore.firestore()
+            let docRef = db.collection("users").document(uid)
+            
+            docRef.getDocument { (document, error) in
+                if error != nil{
+                    print(error?.localizedDescription as Any)
+                    
+                    return
+                    
+                }
+                if let document = document{
+                    
+                    if document.exists {
+                        DispatchQueue.main.async {
+                        withAnimation(.interactiveSpring(response: 0.6,dampingFraction: 0.6)){
                          
-                           return
-                         
-                       }
-                   }else{
-                     
-                       return
-                   }
-                   
+                                self.InfoAdded = true
+                            }
+                        }
+                    } else {
+                        
+                        return
+                        
+                    }
+                }else{
+                    
+                    return
+                }
                 
-               }
+                
+            }
+        }
     }
 }
 

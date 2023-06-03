@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
@@ -61,7 +62,10 @@ class UserDataStore: ObservableObject {
                 }
                 
                 DispatchQueue.main.async {
-                    self?.users = newUsers
+                    withAnimation(.easeInOut){
+                        
+                        self?.users = newUsers
+                    }
                     print(self?.users.count ?? 0)
                 }
             }
