@@ -17,7 +17,7 @@ struct UserInformationView: View {
     @State private var image:UIImage?
     @State private var showPicker = false
     
-    @State private var InfoAdded = false
+    @AppStorage("InfoAdded")  var InfoAdded = false
     
     var body: some View {
         ZStack{

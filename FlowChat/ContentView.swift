@@ -32,6 +32,7 @@ struct ContentView: View {
                 Image("background1")
                     .resizable()
                     .aspectRatio( contentMode: .fit)
+                    .transition(.move(edge: .bottom))
             }
             .padding(.top)
             .ignoresSafeArea()
