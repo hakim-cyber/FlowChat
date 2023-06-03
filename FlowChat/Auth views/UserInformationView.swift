@@ -12,7 +12,7 @@ import Firebase
 struct UserInformationView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     
-    @State private var startanimation = false
+    @State private var startanimation = true
     @State private var userName = ""
     @State private var image:UIImage?
     @State private var showPicker = false
@@ -72,7 +72,7 @@ struct UserInformationView: View {
                     }
                     if startanimation {
                         LottieView()
-                            .scaledToFit()
+                            .frame(width:  UIScreen.main.bounds.size.width / 5)
                     }
                 }
             }

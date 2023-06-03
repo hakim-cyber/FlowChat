@@ -82,7 +82,7 @@ struct LoginView: View {
                     .padding(.horizontal)
                     if startanimation{
                         LottieView()
-                            .scaledToFit()
+                            .frame(width:  UIScreen.main.bounds.size.width / 5)
                     }
                 }
                 .onAppear{
