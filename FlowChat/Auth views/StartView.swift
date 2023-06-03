@@ -37,15 +37,9 @@ struct StartView: View {
     var background:some View{
 
         return ZStack{
-            Color.blue.colorMultiply(.pink).ignoresSafeArea()
-            VStack{
-                Spacer()
-                Image("background2")
-                    .resizable()
-                    .aspectRatio( contentMode: .fit)
-                   
-            }
-            .padding(.top)
+            Image("photo1")
+                .resizable()
+                .ignoresSafeArea()
          
         }
         .ignoresSafeArea()
@@ -101,7 +95,7 @@ struct StartView: View {
                     Text("Register")
                         .foregroundColor(.black)
                         .padding()
-                        .padding(.horizontal,40)
+                        .padding(.horizontal,30)
                         .background(in: Capsule())
                 }
             }

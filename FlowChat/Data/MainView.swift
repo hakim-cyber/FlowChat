@@ -22,7 +22,9 @@ struct MainView: View {
     }
     var body: some View {
         ZStack{
-            Color.pink.colorMultiply(.blue).ignoresSafeArea()
+            Image("photo6")
+                .resizable()
+                .ignoresSafeArea()
             
         }
         .padding(.top)
