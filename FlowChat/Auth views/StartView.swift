@@ -37,7 +37,7 @@ struct StartView: View {
     var background:some View{
 
         return ZStack{
-            Color.background
+            Color.blue.colorMultiply(.pink).ignoresSafeArea()
             VStack{
                 Spacer()
                 Image("background2")

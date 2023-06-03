@@ -23,6 +23,8 @@
 		086FFDAA2A2A168E00456A70 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDA92A2A168E00456A70 /* ImagePicker.swift */; };
 		086FFDAE2A2A2BAC00456A70 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDAD2A2A2BAC00456A70 /* UserData.swift */; };
 		086FFDB02A2A2D5400456A70 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDAF2A2A2D5400456A70 /* structs.swift */; };
+		0898F2322A2B348D00BD26E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2312A2B348D00BD26E8 /* MainView.swift */; };
+		0898F2342A2B5F5300BD26E8 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		086FFDA92A2A168E00456A70 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		086FFDAD2A2A2BAC00456A70 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		086FFDAF2A2A2D5400456A70 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
+		0898F2312A2B348D00BD26E8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 				086FFD972A2A009F00456A70 /* GoogleService-Info.plist */,
 				086FFD852A29302C00456A70 /* FlowChatApp.swift */,
 				086FFD872A29302C00456A70 /* ContentView.swift */,
+				0898F2302A2B346F00BD26E8 /* MainViews */,
 				086FFDAC2A2A2B9A00456A70 /* Data */,
 				086FFDA02A2A024600456A70 /* Auth views */,
 				086FFDAB2A2A19A600456A70 /* features */,
@@ -111,6 +116,7 @@
 			children = (
 				086FFD932A29303D00456A70 /* Colors.swift */,
 				086FFDA92A2A168E00456A70 /* ImagePicker.swift */,
+				0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */,
 			);
 			path = features;
 			sourceTree = "<group>";
@@ -120,8 +126,16 @@
 			children = (
 				086FFDAD2A2A2BAC00456A70 /* UserData.swift */,
 				086FFDAF2A2A2D5400456A70 /* structs.swift */,
+				0898F2312A2B348D00BD26E8 /* MainView.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		0898F2302A2B346F00BD26E8 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0898F2342A2B5F5300BD26E8 /* RoundedCorner.swift in Sources */,
 				086FFD882A29302C00456A70 /* ContentView.swift in Sources */,
 				086FFD942A29303D00456A70 /* Colors.swift in Sources */,
 				086FFD862A29302C00456A70 /* FlowChatApp.swift in Sources */,
@@ -210,6 +225,7 @@
 				086FFDB02A2A2D5400456A70 /* structs.swift in Sources */,
 				086FFDA82A2A159900456A70 /* UserInformationView.swift in Sources */,
 				086FFDA62A2A0E9500456A70 /* RegisterView.swift in Sources */,
+				0898F2322A2B348D00BD26E8 /* MainView.swift in Sources */,
 				086FFDAA2A2A168E00456A70 /* ImagePicker.swift in Sources */,
 				086FFDA42A2A0E8B00456A70 /* LoginView.swift in Sources */,
 				086FFDA22A2A032700456A70 /* StartView.swift in Sources */,

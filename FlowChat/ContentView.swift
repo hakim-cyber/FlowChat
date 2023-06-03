@@ -27,7 +27,7 @@ struct ContentView: View {
     var bacground:some View{
 
         return ZStack{
-            Color.background
+            Color.blue.colorMultiply(.pink).ignoresSafeArea()
             VStack{
                 Spacer()
                 Image("background1")
