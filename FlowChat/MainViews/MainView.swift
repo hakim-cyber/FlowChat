@@ -11,7 +11,7 @@ import Firebase
 struct MainView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     @State private var screen = UIScreen.main.bounds.size
-    
+    @State private var showAddView = false
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chats: [Chat]())}
         
@@ -34,6 +34,32 @@ struct MainView: View {
         .overlay(alignment: .top){
             header
         }
+        .overlay{
+            if showAddView{
+                AddView(){ participants in
+                    if participants.count <= 1{
+                      // nothing to do
+                        withAnimation(.easeInOut(duration: 0.4)){
+                          
+                                showAddView.toggle()
+                            
+                        }
+                    }else{
+                        // add new chat with participants
+                        withAnimation(.easeInOut(duration: 0.4)){
+                            
+                                showAddView.toggle()
+                            
+                        }
+                    }
+                }
+                .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
+               
+                
+           
+                
+            }
+        }
         .ignoresSafeArea()
        
     }
@@ -55,6 +81,11 @@ struct MainView: View {
             HStack(alignment: .top,spacing: 5){
                 Button{
                     // new chat
+                    withAnimation(.easeInOut(duration: 0.4)){
+                       
+                            showAddView.toggle()
+                        
+                    }
                 }label: {
                     Image(systemName: "plus")
                         .resizable()
