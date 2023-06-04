@@ -77,7 +77,7 @@ struct MainView: View {
             HStack(alignment: .top,spacing: 5){
                 Button{
                     // new chat
-                    withAnimation(.easeInOut(duration: 0.3)){
+                    withAnimation(.easeInOut(duration: 0.3 )){
                        
                             showAddView.toggle()
                         
