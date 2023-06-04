@@ -20,7 +20,7 @@ struct AddView: View {
        ]
     var body: some View {
         ZStack{
-            Color.customPurple.clipShape(RoundedRectangle(cornerRadius: 20))
+            Color.black.clipShape(RoundedRectangle(cornerRadius: 20))
             
             VStack{
                 HStack{
@@ -41,7 +41,7 @@ struct AddView: View {
            
                 ScrollView(.horizontal,showsIndicators: false){
                     LazyHGrid(rows: rows){
-                        ForEach(users,id: \.id) { user in
+                        ForEach(userDataStore.users,id: \.id) { user in
                             VStack(spacing: 4){
                                 useImage(text: user.profileImage)
                                     .resizable()

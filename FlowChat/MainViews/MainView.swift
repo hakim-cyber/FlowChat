@@ -23,7 +23,7 @@ struct MainView: View {
     }
     var body: some View {
         ZStack{
-            Image("photo7")
+            Image("photo2")
                 .resizable()
                 .ignoresSafeArea()
                 
@@ -39,25 +39,21 @@ struct MainView: View {
                 AddView(){ participants in
                     if participants.count <= 1{
                       // nothing to do
-                        withAnimation(.easeInOut(duration: 0.4)){
+                        withAnimation(.easeInOut(duration: 0.3)){
                           
                                 showAddView.toggle()
                             
                         }
                     }else{
                         // add new chat with participants
-                        withAnimation(.easeInOut(duration: 0.4)){
+                        withAnimation(.easeInOut(duration: 0.3)){
                             
                                 showAddView.toggle()
                             
                         }
                     }
                 }
-                .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
-               
-                
-           
-                
+                .transition(.move(edge: .trailing))
             }
         }
         .ignoresSafeArea()
@@ -81,7 +77,7 @@ struct MainView: View {
             HStack(alignment: .top,spacing: 5){
                 Button{
                     // new chat
-                    withAnimation(.easeInOut(duration: 0.4)){
+                    withAnimation(.easeInOut(duration: 0.3)){
                        
                             showAddView.toggle()
                         
