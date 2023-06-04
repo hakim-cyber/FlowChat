@@ -88,7 +88,6 @@
 				086FFD972A2A009F00456A70 /* GoogleService-Info.plist */,
 				086FFD852A29302C00456A70 /* FlowChatApp.swift */,
 				086FFD872A29302C00456A70 /* ContentView.swift */,
-				08BC392B2A2BB94300C4F8D3 /* lottie */,
 				0898F2302A2B346F00BD26E8 /* MainViews */,
 				086FFDAC2A2A2B9A00456A70 /* Data */,
 				086FFDA02A2A024600456A70 /* Auth views */,
@@ -121,6 +120,7 @@
 		086FFDAB2A2A19A600456A70 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				08BC392B2A2BB94300C4F8D3 /* lottie */,
 				086FFD932A29303D00456A70 /* Colors.swift */,
 				086FFDA92A2A168E00456A70 /* ImagePicker.swift */,
 				0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */,
