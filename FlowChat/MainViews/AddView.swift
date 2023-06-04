@@ -10,7 +10,6 @@ import Firebase
 struct AddView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     @State private var participants = [User]()
-    @State private var users = [User(id: UUID().uuidString,userName: "Hakim", profileImage: "", chats: [Chat]()),User(id: UUID().uuidString,userName: "Hakim", profileImage: "", chats: [Chat]()),User(id: UUID().uuidString,userName: "Hakim", profileImage: "", chats: [Chat]())]
     var addParticipants:([User]) -> Void
     @State private var screen = UIScreen.main.bounds.size
     let rows = [
@@ -91,9 +90,7 @@ struct AddView: View {
             .padding()
         }
         .frame(width: screen.width / 1.05,height: screen.height / 3 )
-        .onAppear{
-            
-        }
+        .onAppear(perform: addMe)
     }
     func useImage(text:String)->Image{
         let data = Data(base64Encoded: text) ?? Data()
