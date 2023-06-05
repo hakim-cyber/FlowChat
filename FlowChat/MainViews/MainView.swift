@@ -13,12 +13,12 @@ struct MainView: View {
     @State private var screen = UIScreen.main.bounds.size
     @State private var showAddView = false
     var currentUserData:User{
-        guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chats: [Chat]())}
+        guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chatsIds: [String]())}
         
         if let user = userDataStore.users.first(where: {$0.id == uid}){
             return user
         }else{
-            return User(userName: "non", profileImage: "", chats: [Chat]())
+            return User(userName: "non", profileImage: "", chatsIds: [String]())
         }
     }
     var body: some View {
@@ -47,7 +47,7 @@ struct MainView: View {
                     }else{
                         // add new chat with participants
                         withAnimation(.easeInOut(duration: 0.3)){
-                            self.userDataStore.addNewChat(participants: participants)
+                         
                                 showAddView.toggle()
                             
                         }

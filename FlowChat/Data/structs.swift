@@ -40,14 +40,14 @@ struct User:Codable{
 
 
 struct Chat:Codable{
-    var id = UUID()
+    @DocumentID var id:String?
     var participantsID:[String]
     var messagesID = [String]()
 }
 
 
 struct Message:Codable{
-    var id = UUID()
+    @DocumentID var id:String?
     var senderID:String
     var content:String
     var date:String
