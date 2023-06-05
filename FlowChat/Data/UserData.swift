@@ -15,7 +15,8 @@ import FirebaseFirestoreSwift
 class UserDataStore: ObservableObject {
     let db = Firestore.firestore()
     @Published var users = [User]()
-    
+    @Published var chatsForUser = [Chat]()
+    @Published var messagesForUser = [Message]()
     func updateOrAddUser(user: User) {
         if let id = user.id {
             let docRef = db.collection("users").document(id)
@@ -71,4 +72,6 @@ class UserDataStore: ObservableObject {
             }
         }
     }
+    
+    
 }

@@ -47,7 +47,7 @@ struct MainView: View {
                     }else{
                         // add new chat with participants
                         withAnimation(.easeInOut(duration: 0.3)){
-                            
+                            self.userDataStore.addNewChat(participants: participants)
                                 showAddView.toggle()
                             
                         }
