@@ -95,7 +95,7 @@ struct UserInformationView: View {
         
         let imageString = resizedImageData.base64EncodedString()
         
-        let user = User(id: uidOfUser, userName: userName, profileImage: imageString, chats: [])
+        let user = User(id: uidOfUser, userName: userName, profileImage: imageString, chatsIds: [])
         
         userDataStore.updateOrAddUser(user: user)
       

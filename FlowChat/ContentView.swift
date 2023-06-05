@@ -21,6 +21,7 @@ struct ContentView: View {
        
         .onAppear{
             userDataStore.fetchUsers()
+         
      
         }
         .ignoresSafeArea()

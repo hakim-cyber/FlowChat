@@ -18,7 +18,7 @@ class UserDataStore: ObservableObject {
     @Published var chatsForUser = [Chat]()
  
     
-    @Published var chatListeners = [ListenerRegistration]()
+   var chatListeners = [ListenerRegistration]()
     func updateOrAddUser(user: User) {
         if let id = user.id {
             let docRef = db.collection("users").document(id)
@@ -89,7 +89,7 @@ class UserDataStore: ObservableObject {
             }
             let docRef = chatsref.document(chat.id!)
             
-            docRef.updateData(["chatsIds": FieldValue.arrayUnion([chat.id ?? "" as String])]) { (error) in
+            docRef.updateData(["messagesID": FieldValue.arrayUnion([message.id ?? "" as String])]) { (error) in
                                               if let error = error {
                                                   print("Error adding message: \(error)")
                                                  

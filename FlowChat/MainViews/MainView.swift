@@ -12,6 +12,7 @@ struct MainView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     @State private var screen = UIScreen.main.bounds.size
     @State private var showAddView = false
+    @State private var chatsForUser = [Chat]()
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chatsIds: [String]())}
         
@@ -28,6 +29,11 @@ struct MainView: View {
                 .ignoresSafeArea()
                 
             
+        }
+        .onAppear{
+            userDataStore.fetchChatsForUser(user: currentUserData){chats in
+                self.chatsForUser = chats
+            }
         }
         .padding(.top)
         .overlay(alignment: .bottom, content: {content})
