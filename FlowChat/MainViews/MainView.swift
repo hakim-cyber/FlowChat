@@ -46,14 +46,14 @@ struct MainView: View {
                     if participants.count <= 1{
                       // nothing to do
                         withAnimation(.easeInOut(duration: 0.3)){
-                          
+                           
                                 showAddView.toggle()
                             
                         }
                     }else{
                         // add new chat with participants
                         withAnimation(.easeInOut(duration: 0.3)){
-                         
+                            self.userDataStore.addChat(participantIds: participants)
                                 showAddView.toggle()
                             
                         }

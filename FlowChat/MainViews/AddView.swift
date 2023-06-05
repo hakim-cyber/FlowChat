@@ -10,7 +10,7 @@ import Firebase
 struct AddView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     @State private var participants = [User]()
-    var addParticipants:([User]) -> Void
+    var addParticipants:([String]) -> Void
     @State private var screen = UIScreen.main.bounds.size
     let rows = [
            GridItem(.fixed(UIScreen.main.bounds.size.height / 14)),
@@ -25,7 +25,7 @@ struct AddView: View {
                 HStack{
                     Button{
                         // close
-                        addParticipants([User]())
+                        addParticipants([String]())
                     }label: {
                         Image(systemName: "xmark")
                             
@@ -74,7 +74,7 @@ struct AddView: View {
                 HStack{
                     Spacer()
                     Button{
-                        addParticipants(participants)
+                        addParticipants(usersId(users: participants))
                     }label: {
                         Text("Start Chat")
                             .padding(5)
@@ -105,6 +105,13 @@ struct AddView: View {
             self.participants = []
             self.participants.append(me)
         }
+    }
+    func usersId(users:[User])->[String]{
+        var ids = [String]()
+        for user in users{
+            ids.append(user.id ?? "")
+        }
+        return ids
     }
 }
 

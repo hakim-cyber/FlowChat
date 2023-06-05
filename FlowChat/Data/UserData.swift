@@ -48,7 +48,8 @@ class UserDataStore: ObservableObject {
     func addChat(participantIds:[String]){
         let chatsRef = db.collection("chats")
         let usersRef = db.collection("users")
-        var chat = Chat(id: UUID().uuidString, participantsID: participantIds)
+        let uid = UUID().uuidString
+        let chat = Chat(id: uid, participantsID: participantIds)
         DispatchQueue.global().sync {
            
                 do{
@@ -61,7 +62,7 @@ class UserDataStore: ObservableObject {
                 do{
                    
                     let docRef = db.collection("users").document(participantId)
-                    docRef.updateData(["chatsIds": FieldValue.arrayUnion([chat.id ?? "" as String])]) { (error) in
+                    docRef.updateData(["chatsIds": FieldValue.arrayUnion([uid as String])]) { (error) in
                                                       if let error = error {
                                                           print("Error adding message: \(error)")
                                                          
