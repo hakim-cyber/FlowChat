@@ -25,7 +25,7 @@ struct MainView: View {
     }
     var body: some View {
         ZStack{
-            Image("photo2")
+            Image("photo4")
                 .resizable()
                 .ignoresSafeArea()
                 
@@ -78,6 +78,7 @@ struct MainView: View {
             .roundedCorner(30, corners: [.topLeft,.topRight])
             .ignoresSafeArea()
         }
+        .padding(.top)
     }
     var ListOfAllUsers:some View{
         ScrollView(.horizontal,showsIndicators: false){

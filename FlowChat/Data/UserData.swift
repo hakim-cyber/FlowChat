@@ -86,8 +86,8 @@ class UserDataStore: ObservableObject {
         DispatchQueue.global().sync {
             
             do{
-                if message.id != nil{
-                    let docRef = messagesRef.document(message.id)
+                if let id = message.id{
+                    let docRef = messagesRef.document(id)
                     try docRef.setData(from: message)
                 }else{
                     try messagesRef.addDocument(from: message)
