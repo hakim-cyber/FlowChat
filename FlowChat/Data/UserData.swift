@@ -53,7 +53,9 @@ class UserDataStore: ObservableObject {
         DispatchQueue.global().sync {
            
                 do{
-                    try chatsRef.addDocument(from: chat)
+                    
+                    let docRef = chatsRef.document(uid)
+                    try docRef.setData(from: chat)
                 }catch{
                     print("Error adding chat \(error)")
                 }
@@ -84,7 +86,12 @@ class UserDataStore: ObservableObject {
         DispatchQueue.global().sync {
             
             do{
-                try messagesRef.addDocument(from: message)
+                if message.id != nil{
+                    let docRef = messagesRef.document(message.id)
+                    try docRef.setData(from: message)
+                }else{
+                    try messagesRef.addDocument(from: message)
+                }
             }catch{
                 print("Error adding chat \(error)")
             }

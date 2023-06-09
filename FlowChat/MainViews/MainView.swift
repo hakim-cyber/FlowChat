@@ -15,6 +15,7 @@ struct MainView: View {
     @State private var chatsForUser = [Chat]()
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chatsIds: [String]())}
+       
         
         if let user = userDataStore.users.first(where: {$0.id == uid}){
             return user
