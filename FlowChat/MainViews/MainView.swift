@@ -25,7 +25,7 @@ struct MainView: View {
     }
     var body: some View {
         ZStack{
-            Image("photo4")
+            Image("photo10")
                 .resizable()
                 .ignoresSafeArea()
                 
@@ -63,7 +63,9 @@ struct MainView: View {
                 .transition(.move(edge: .trailing))
             }
         }
+        .padding(.top)
         .ignoresSafeArea()
+       
        
     }
     var content:some View{
