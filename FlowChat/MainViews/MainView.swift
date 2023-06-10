@@ -88,7 +88,7 @@ struct MainView: View {
        
         .background(.white)
         .roundedCorner(30, corners: [.topLeft,.topRight])
-        .frame(width: screen.width,height: screen.height * 0.65)
+        .frame(width: screen.width,height: screen.height * 0.60)
       
         .ignoresSafeArea()
        
@@ -184,7 +184,7 @@ struct MainView: View {
             ListOfAllUsers
         }
         .padding(.top,34)
-        .frame(width: screen.width,height: screen.height * 0.35)
+        .frame(width: screen.width,height: screen.height * 0.4)
     }
     func useImage(text:String)->Image{
         let data = Data(base64Encoded: text) ?? Data()
