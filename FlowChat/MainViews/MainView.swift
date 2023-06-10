@@ -68,22 +68,30 @@ struct MainView: View {
         VStack{
             Spacer()
             ScrollView(.vertical){
-            
-                ForEach(userDataStore.chatsForUser, id:\.id){chat in
-                        
-                        chatItemView(chat: chat)
-                            .environmentObject(userDataStore)
+                VStack(spacing: 30){
+                    ForEach(userDataStore.chatsForUser, id:\.id){chat in
+                        VStack(){
+                            chatItemView(chat: chat)
+                                .environmentObject(userDataStore)
+                                .padding(.bottom)
+                            Divider()
+                                .frame(width: screen.width / 1.10)
+                                .overlay(.secondary)
+                        }
                     }
-                
-                
+                    
+                }  .padding(.vertical,20)
             }
             .frame(maxWidth: .infinity,maxHeight:.infinity,alignment:.bottom)
-            .background(.white)
-            .frame(width: screen.width,height: screen.height * 0.65)
-            .roundedCorner(30, corners: [.topLeft,.topRight])
-            .ignoresSafeArea()
+           
         }
-        .padding(.top)
+       
+        .background(.white)
+        .roundedCorner(30, corners: [.topLeft,.topRight])
+        .frame(width: screen.width,height: screen.height * 0.65)
+      
+        .ignoresSafeArea()
+       
     }
     var ListOfAllUsers:some View{
         ScrollView(.horizontal,showsIndicators: false){

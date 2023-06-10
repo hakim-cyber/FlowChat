@@ -25,8 +25,9 @@ struct chatItemView: View {
         return users
     }
     var body: some View {
-        HStack(spacing: 10){
+        HStack( spacing: 5){
         images
+                .padding(.trailing,5)
                 
             VStack(alignment: .leading){
                names
@@ -34,6 +35,7 @@ struct chatItemView: View {
                 Text("hello i want to say you that dksjdsjdk")
                     .font(.callout)
                     .fontWeight(.ultraLight)
+                    .foregroundColor(.black)
             }
             .padding(.vertical,10)
             .padding(.trailing,20)
@@ -41,6 +43,7 @@ struct chatItemView: View {
                 Text("10:00 am")
                     .font(.caption)
                     .fontWeight(.ultraLight)
+                    .foregroundColor(.black)
                 Spacer()
                 Text("✓")
                     .fontWeight(.medium)
@@ -50,27 +53,32 @@ struct chatItemView: View {
             
         }
         
-        .frame(width: screen.width / 1.15, height: screen.height / 14)
+        .frame(width: screen.width / 1.10, height: screen.height / 24)
     }
     var names:some View{
         HStack{
             ForEach(participants , id: \.id){user in
                 Text("\(user.userName)")
-                    .bold()
-                    .scaledToFit()
+                    .fontWeight(.medium)
+                    .font(.callout)
+                    
             }
         }
-        .frame(width: screen.width / 2)
+        .foregroundColor(.black)
+       
     }
     var images:some View{
         ZStack{
             ForEach(participants, id: \.id){user in
                 useImage(text: user.profileImage)
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
                     .offset(x:offsetForImage(user: user))
             }
         }
-        .frame(height: screen.height / 14)
-        .padding(.vertical,3)
+        .frame(height: screen.height / 24)
+        .padding(.vertical,10)
     }
     
     func useImage(text:String)->Image{
@@ -82,7 +90,7 @@ struct chatItemView: View {
     }
     func offsetForImage(user:User)->CGFloat{
         if let index = participants.firstIndex(where: {$0.id == user.id}){
-            return CGFloat(index * 2)
+            return CGFloat(index * 10)
         }else{
             return CGFloat.zero
         }

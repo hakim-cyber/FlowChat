@@ -136,6 +136,7 @@ class UserDataStore: ObservableObject {
                        self?.fetchChatsForUser(user: user){chats in
                            self?.chatsForUser = chats
                            print("fetched chats")
+                           print(chats.count)
                        }
                    }
                 
@@ -196,7 +197,7 @@ class UserDataStore: ObservableObject {
 
                  // Store the listener for later removal if needed
                  // This assumes you have a property to hold the listeners (e.g., an array)
-                 self.chatListeners.append(listener)
+           
              }
          }
 
