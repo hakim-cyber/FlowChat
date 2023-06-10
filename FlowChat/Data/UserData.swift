@@ -119,6 +119,7 @@ class UserDataStore: ObservableObject {
                 }
                 
                 var newUsers = [User]()
+                var newChats = [Chat]()
                 for doc in documents {
                     do {
                         let newuser = try doc.data(as: User.self)
@@ -127,6 +128,21 @@ class UserDataStore: ObservableObject {
                         print(error)
                     }
                 }
+               do{
+                    let id = Auth.auth().currentUser?.uid
+                    
+                   if let user = newUsers.first(where:{$0.id == id}){
+                       
+                       self?.fetchChatsForUser(user: user){chats in
+                           self?.chatsForUser = chats
+                           print("fetched chats")
+                       }
+                   }
+                
+                
+               }catch{
+                   print(error)
+               }
                 
                 DispatchQueue.main.async {
                     withAnimation(.easeInOut){

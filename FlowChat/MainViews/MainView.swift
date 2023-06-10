@@ -31,11 +31,7 @@ struct MainView: View {
                 
             
         }
-        .onAppear{
-            userDataStore.fetchChatsForUser(user: currentUserData){chats in
-                self.chatsForUser = chats
-            }
-        }
+        
         .padding(.top)
         .overlay(alignment: .bottom, content: {content})
         .overlay(alignment: .top){
@@ -73,7 +69,7 @@ struct MainView: View {
             Spacer()
             ScrollView(.vertical){
             
-                    ForEach(userDataStore.chatsForUser , id:\.id){chat in
+                ForEach(userDataStore.chatsForUser, id:\.id){chat in
                         
                         chatItemView(chat: chat)
                             .environmentObject(userDataStore)
