@@ -13,6 +13,8 @@ struct MainView: View {
     @State private var screen = UIScreen.main.bounds.size
     @State private var showAddView = false
     @State private var chatsForUser = [Chat]()
+    @State private var selectedChat:Chat?
+    @State private var showFullChat = false
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chatsIds: [String]())}
        
@@ -33,7 +35,12 @@ struct MainView: View {
         }
         
         .padding(.top)
-        .overlay(alignment: .bottom, content: {content})
+        .overlay(alignment: .bottom, content: {
+            if showFullChat == false{
+                content
+                    .transition(.move(edge: .top))
+            }
+        })
         .overlay(alignment: .top){
             header
         }
@@ -60,6 +67,21 @@ struct MainView: View {
             }
         }
         .ignoresSafeArea()
+        .sheet(isPresented: $showFullChat,onDismiss: {
+            self.selectedChat = nil
+            DispatchQueue.global().async {
+                if self.userDataStore.messageListener.first != nil{
+                    self.userDataStore.messageListener.first?.remove()
+                }
+            }
+          
+            
+        }){
+            if selectedChat != nil{
+                FullChatView(chat: selectedChat!)
+            }
+        }
+        
        
        
     }
@@ -74,6 +96,10 @@ struct MainView: View {
                             chatItemView(chat: chat)
                                 .environmentObject(userDataStore)
                                 .padding(.bottom)
+                                .onTapGesture {
+                                    self.selectedChat = chat
+                                    self.showFullChat = true
+                                }
                             Divider()
                                 .frame(width: screen.width / 1.10)
                                 .overlay(.secondary)
@@ -91,6 +117,8 @@ struct MainView: View {
         .frame(width: screen.width,height: screen.height * 0.60)
       
         .ignoresSafeArea()
+       
+        
        
     }
     var ListOfAllUsers:some View{

@@ -16,6 +16,7 @@ class UserDataStore: ObservableObject {
     let db = Firestore.firestore()
     @Published var users = [User]()
     @Published var chatsForUser = [Chat]()
+    @Published var messageListener = [ListenerRegistration]()
  
     
    var chatListeners = [ListenerRegistration]()
@@ -50,6 +51,7 @@ class UserDataStore: ObservableObject {
         let usersRef = db.collection("users")
         let uid = UUID().uuidString
         let chat = Chat(id: uid, participantsID: participantIds)
+        
         DispatchQueue.global().sync {
            
                 do{
@@ -153,7 +155,7 @@ class UserDataStore: ObservableObject {
                     print(self?.users.count ?? 0)
                 }
             }
-            self.chatListeners.append(listener)
+           
         }
     }
     
@@ -248,7 +250,7 @@ class UserDataStore: ObservableObject {
 
                 // Store the listener for later removal if needed
                 // This assumes you have a property to hold the listeners (e.g., an array)
-                self.chatListeners.append(listener)
+                self.messageListener.append(listener)
             }
         }
 
