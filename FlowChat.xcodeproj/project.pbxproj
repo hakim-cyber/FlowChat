@@ -27,6 +27,7 @@
 		086FFDB02A2A2D5400456A70 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDAF2A2A2D5400456A70 /* structs.swift */; };
 		0898F2322A2B348D00BD26E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2312A2B348D00BD26E8 /* MainView.swift */; };
 		0898F2342A2B5F5300BD26E8 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */; };
+		089C541F2A3485950075E015 /* chatItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C541E2A3485950075E015 /* chatItemView.swift */; };
 		08BC392A2A2BB7FF00C4F8D3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 08BC39292A2BB7FF00C4F8D3 /* Lottie */; };
 		08F7176B2A2CABBD000ED3C0 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F7176A2A2CABBD000ED3C0 /* AddView.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,7 @@
 		086FFDAF2A2A2D5400456A70 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 		0898F2312A2B348D00BD26E8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		089C541E2A3485950075E015 /* chatItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatItemView.swift; sourceTree = "<group>"; };
 		08F7176A2A2CABBD000ED3C0 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 		086FFD792A29302C00456A70 = {
 			isa = PBXGroup;
 			children = (
+				089C541E2A3485950075E015 /* chatItemView.swift */,
 				086FFD842A29302C00456A70 /* FlowChat */,
 				086FFD832A29302C00456A70 /* Products */,
 			);
@@ -253,6 +256,7 @@
 				086FFDAA2A2A168E00456A70 /* ImagePicker.swift in Sources */,
 				086FFDA42A2A0E8B00456A70 /* LoginView.swift in Sources */,
 				086FFDA22A2A032700456A70 /* StartView.swift in Sources */,
+				089C541F2A3485950075E015 /* chatItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

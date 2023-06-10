@@ -63,7 +63,6 @@ struct MainView: View {
                 .transition(.move(edge: .trailing))
             }
         }
-        .padding(.top)
         .ignoresSafeArea()
        
        
@@ -173,6 +172,7 @@ struct MainView: View {
             ListOfAllUsers
         }
         .padding(.top,34)
+        .frame(width: screen.width,height: screen.height * 0.35)
     }
     func useImage(text:String)->Image{
         let data = Data(base64Encoded: text) ?? Data()
