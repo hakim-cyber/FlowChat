@@ -68,13 +68,21 @@ struct MainView: View {
        
     }
     var content:some View{
+        
         VStack{
             Spacer()
             ScrollView(.vertical){
+            
+                    ForEach(userDataStore.chatsForUser , id:\.id){chat in
+                        
+                        chatItemView(chat: chat)
+                            .environmentObject(userDataStore)
+                    }
+                
                 
             }
-            .background(.white)
             .frame(maxWidth: .infinity,maxHeight:.infinity,alignment:.bottom)
+            .background(.white)
             .frame(width: screen.width,height: screen.height * 0.65)
             .roundedCorner(30, corners: [.topLeft,.topRight])
             .ignoresSafeArea()

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Firebase
 struct ContentView: View {
     @State private var screen = UIScreen.main.bounds
     @EnvironmentObject var userDataStore:UserDataStore
@@ -20,8 +20,8 @@ struct ContentView: View {
         }
        
         .onAppear{
-            userDataStore.fetchUsers()
-         
+          
+         fetchChatsForUser()
      
         }
         .ignoresSafeArea()
@@ -42,6 +42,26 @@ struct ContentView: View {
             .ignoresSafeArea()
         }
     }
+    func fetchChatsForUser(){
+        DispatchQueue.main.async {
+            
+            
+            guard let id = Auth.auth().currentUser?.uid else{
+                print(("no id"))
+                return}
+            userDataStore.fetchUsers()
+            
+            if let user = userDataStore.users.first(where: {$0.id == id}){
+                userDataStore.fetchChatsForUser(user: user){chats in
+                    userDataStore.chatsForUser = chats
+                    print("start chat fetching")
+                }
+            }else{
+                print("no user")
+            }
+        }
+    }
+        
 }
 
 struct ContentView_Previews: PreviewProvider {
