@@ -16,7 +16,7 @@ class UserDataStore: ObservableObject {
     let db = Firestore.firestore()
     @Published var users = [User]()
     @Published var chatsForUser = [Chat]()
-    @Published var messageListener = [ListenerRegistration]()
+ var messageListener = [ListenerRegistration]()
  
     
    var chatListeners = [ListenerRegistration]()
@@ -175,10 +175,9 @@ class UserDataStore: ObservableObject {
                  let listener = chatRef.addSnapshotListener { (documentSnapshot, error) in
                      guard let document = documentSnapshot else {
                          print("Error fetching chat: \(error)")
-                         dispatchGroup.leave()
                          return
                      }
-
+                     
                      if document.exists {
                          do {
                              // Parse the chat data and update the fetchedChats array
@@ -193,18 +192,14 @@ class UserDataStore: ObservableObject {
                              print("Error parsing chat: \(error)")
                          }
                      }
-
-                     dispatchGroup.leave()
+                     
+                     dispatchGroup.leave() // Move this line inside the closure
                  }
-
-                 // Store the listener for later removal if needed
-                 // This assumes you have a property to hold the listeners (e.g., an array)
-           
              }
          }
 
          // Notify the completion closure when all chat fetch operations have completed
-         dispatchGroup.notify(queue: DispatchQueue.main) {
+         dispatchGroup.notify(queue: DispatchQueue.global()) {
              completion(fetchedChats)
          }
      }

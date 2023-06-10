@@ -36,10 +36,10 @@ struct MainView: View {
         
         .padding(.top)
         .overlay(alignment: .bottom, content: {
-            if showFullChat == false{
+            
                 content
                     .transition(.move(edge: .top))
-            }
+            
         })
         .overlay(alignment: .top){
             header

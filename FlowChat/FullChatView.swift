@@ -37,6 +37,7 @@ struct FullChatView: View {
                         }
                     }
                 }
+                .padding(.vertical,20)
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity , alignment: .top)
                 
@@ -83,18 +84,20 @@ struct FullChatView: View {
        return ZStack{
             if message.senderID == idOfuserUsingApp{
                 Rectangle()
-                    .fill(Color.purple.opacity(0.5))
-                    .roundedCorner(20, corners: [.topLeft,.topRight,.bottomLeft])
+                    .fill(Color.blue)
+                    .cornerRadius(10)
                     
                     
             }else{
                 Rectangle()
-                    .fill(.thinMaterial)
+                    .fill(Color.black)
                     .roundedCorner(20, corners: [.topLeft,.topRight,.bottomRight])
             }
            VStack(alignment: .leading){
                Text(message.content)
+                   .padding(8)
            }
+           
         }
         .frame(maxWidth: screen.width / 2.5)
     }
@@ -107,12 +110,16 @@ struct FullChatView: View {
         return dateString
     }
     func sendMessage(){
-        DispatchQueue.main.async {
-            let messageId = UUID().uuidString
-            let message = Message(id:messageId,senderID: idOfuserUsingApp, content: self.newMessageText, date: self.dateToString(date: Date.now))
-            self.userDataStore.addMessage(message: message, to: self.chat)
-            self.newMessageText = ""
-        }
+        let messageId = UUID().uuidString
+           let message = Message(id: messageId, senderID: idOfuserUsingApp, content: newMessageText, date: dateToString(date: Date.now))
+           
+        DispatchQueue.global().async {
+               userDataStore.addMessage(message: message, to: chat)
+               
+               DispatchQueue.main.async {
+                   self.newMessageText = ""
+               }
+           }
     }
 }
 
