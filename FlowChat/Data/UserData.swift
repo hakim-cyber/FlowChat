@@ -16,9 +16,8 @@ class UserDataStore: ObservableObject {
     let db = Firestore.firestore()
     @Published var users = [User]()
     @Published var chatsForUser = [Chat]()
- var messageListener = [ListenerRegistration]()
- 
     
+    var messageListener = [ListenerRegistration]()
    var chatListeners = [ListenerRegistration]()
     func updateOrAddUser(user: User) {
         if let id = user.id {

@@ -96,15 +96,17 @@ struct FullChatView: View {
                     .cornerRadius(30)
             }
            VStack{
-               Text(message.content)
-                   .padding(3)
+               HStack{
+                   Text(message.content)
+                       .padding(3)
+               }
            }
-           .scaledToFit()
+           
            
            
         }
        .frame(maxWidth: screen.width / 2.5,maxHeight: screen.height / 2 ,alignment: .leading)
-       .scaledToFit()
+     
      
        
        
