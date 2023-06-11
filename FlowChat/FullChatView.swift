@@ -27,7 +27,9 @@ struct FullChatView: View {
     var body: some View {
         
         ZStack{
-            Color.white.ignoresSafeArea()
+            Image("photo10")
+                .resizable()
+                .ignoresSafeArea()
             
             ScrollView{
                 VStack(spacing: 30){
@@ -43,7 +45,7 @@ struct FullChatView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
+                .padding(.horizontal,10)
                 .padding(.vertical,20)
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity , alignment: .top)
@@ -97,36 +99,58 @@ struct FullChatView: View {
     }
     @ViewBuilder
     func messageItem(message:Message) -> some View{
-       return ZStack{
-            if message.senderID == idOfuserUsingApp{
-                Rectangle()
-                    .fill(Color.blue)
-                    .cornerRadius(30)
+        return ZStack{
+            HStack{
+                useImage(text: idToUser(id: message.senderID).profileImage)
+                    .resizable()
+                    .scaledToFit()
+                    .background(.ultraThinMaterial)
+                    .clipShape(Circle())
+                    .frame(width: 30)
+                VStack(alignment: .leading){
                     
+                    Text(message.content)
+                        .foregroundColor(.white)
                     
+                    HStack{
+                        Spacer()
+                        Text("\(stringToDate(string: message.date).formatted(date: .omitted, time: .shortened))")
+                            .font(.caption)
+                            .foregroundColor(.white)
+                            .fontWeight(.ultraLight)
+                    }
+                }
+                .padding(7)
+                .padding(.horizontal,7)
+                .background(
+                    Rectangle()
+                        .fill(message.senderID == idOfuserUsingApp ? Color.blue : Color.black)
+                        .cornerRadius(15)
                     
-            }else{
-                Rectangle()
-                    .fill(Color.black)
-                    .cornerRadius(30)
+                )
             }
-           VStack{
-               HStack{
-                   Text(message.content)
-                       .padding(3)
-                       .foregroundColor(.white)
-               }
-           }
+                
+                
+                
+           
+            
            
            
            
         }
-       .frame(maxWidth: screen.width / 2.5,maxHeight: screen.height / 2 ,alignment: .leading)
+       .frame(maxWidth: screen.width / 2.2,maxHeight: screen.height / 2 )
      
      
        
        
        
+    }
+    func idToUser(id:String)->User{
+        if let user = self.userDataStore.users.first(where: {$0.id == id}){
+            return user
+        }else{
+            return User(userName: "None", profileImage: "", chatsIds: [])
+        }
     }
     func dateToString(date:Date)->String{
         let dateFormatter = DateFormatter()
@@ -142,6 +166,13 @@ struct FullChatView: View {
     let reverseDate = dateFormatter.date(from: string)
         return reverseDate ?? Date.now
        
+    }
+    func useImage(text:String)->Image{
+        let data = Data(base64Encoded: text) ?? Data()
+        
+        let uiImage = UIImage(data: data) ?? UIImage()
+        
+        return Image(uiImage: uiImage)
     }
     func sendMessage(){
         let messageId = UUID().uuidString

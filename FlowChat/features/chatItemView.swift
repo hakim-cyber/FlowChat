@@ -27,18 +27,20 @@ struct chatItemView: View {
     var body: some View {
         HStack( spacing: 5){
         images
-                .padding(.trailing,5)
+            
+               
                 
             VStack(alignment: .leading){
                names
                 Spacer()
-                Text("hello i want to say you that dksjdsjdk")
+                Text("latest message")
                     .font(.callout)
                     .fontWeight(.ultraLight)
                     .foregroundColor(.black)
             }
             .padding(.vertical,10)
-            .padding(.trailing,20)
+            .padding(.leading,10)
+            Spacer()
             VStack{
                 Text("10:00 am")
                     .font(.caption)
@@ -57,12 +59,14 @@ struct chatItemView: View {
     }
     var names:some View{
         HStack{
-            ForEach(participants , id: \.id){user in
-                Text("\(user.userName)")
+            if participants.count > 1{
+                Text("\(chat.title ?? "")")
                     .fontWeight(.medium)
                     .font(.callout)
-                    
+            }else{
+                Text("\(participants.first?.userName ?? "")")
             }
+            
         }
         .foregroundColor(.black)
        
@@ -74,11 +78,13 @@ struct chatItemView: View {
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
+                    .frame(height: screen.height / ( 24 ))
                     .offset(x:offsetForImage(user: user))
             }
         }
         .frame(height: screen.height / 24)
         .padding(.vertical,10)
+        .padding(.trailing)
     }
     
     func useImage(text:String)->Image{
