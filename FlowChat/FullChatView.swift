@@ -49,6 +49,7 @@ struct FullChatView: View {
                 .padding(.vertical,20)
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity , alignment: .top)
+          
                 
         }
         .onAppear{
@@ -90,6 +91,7 @@ struct FullChatView: View {
                         .frame(width: screen.width / 1.3)
                         .textFieldStyle(.plain)
                         .multilineTextAlignment(.leading)
+                       
                         
                 
               
