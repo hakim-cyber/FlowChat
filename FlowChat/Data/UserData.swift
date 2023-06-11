@@ -134,11 +134,13 @@ class UserDataStore: ObservableObject {
                     let id = Auth.auth().currentUser?.uid
                     
                    if let user = newUsers.first(where:{$0.id == id}){
-                       
-                       self?.fetchChatsForUser(user: user){chats in
-                           self?.chatsForUser = chats
-                           print("fetched chats")
-                           print(chats.count)
+                       DispatchQueue.global().async {
+                           self?.fetchChatsForUser(user: user){chats in
+                               self?.chatsForUser = chats
+                               print("fetched chats")
+                               print(chats.count)
+                       }
+                      
                        }
                    }
                 
@@ -224,7 +226,7 @@ class UserDataStore: ObservableObject {
                         dispatchGroup.leave()
                         return
                     }
-
+                    
                     if document.exists {
                         do {
                             // Parse the chat data and update the fetchedChats array
@@ -239,18 +241,22 @@ class UserDataStore: ObservableObject {
                             print("Error parsing message: \(error)")
                         }
                     }
-
+                    
                     dispatchGroup.leave()
                 }
-
+                
                 // Store the listener for later removal if needed
                 // This assumes you have a property to hold the listeners (e.g., an array)
-                self.messageListener.append(listener)
+                DispatchQueue.global().async {
+                    
+                    self.messageListener.append(listener)
+                }
             }
         }
-
+       
         // Notify the completion closure when all chat fetch operations have completed
         dispatchGroup.notify(queue: DispatchQueue.main) {
+           
             completion(fetchedMessages)
         }
     }

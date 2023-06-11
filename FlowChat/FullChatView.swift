@@ -37,6 +37,7 @@ struct FullChatView: View {
                         }
                     }
                 }
+                .padding(.horizontal)
                 .padding(.vertical,20)
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity , alignment: .top)
@@ -85,21 +86,29 @@ struct FullChatView: View {
             if message.senderID == idOfuserUsingApp{
                 Rectangle()
                     .fill(Color.blue)
-                    .cornerRadius(10)
+                    .cornerRadius(30)
+                    
                     
                     
             }else{
                 Rectangle()
                     .fill(Color.black)
-                    .roundedCorner(20, corners: [.topLeft,.topRight,.bottomRight])
+                    .cornerRadius(30)
             }
-           VStack(alignment: .leading){
+           VStack{
                Text(message.content)
-                   .padding(8)
+                   .padding(3)
            }
+           .scaledToFit()
+           
            
         }
-        .frame(maxWidth: screen.width / 2.5)
+       .frame(maxWidth: screen.width / 2.5,maxHeight: screen.height / 2 ,alignment: .leading)
+       .scaledToFit()
+     
+       
+       
+       
     }
     func dateToString(date:Date)->String{
         let dateFormatter = DateFormatter()
