@@ -13,7 +13,7 @@ struct MainView: View {
     @State private var screen = UIScreen.main.bounds.size
     @State private var showAddView = false
     @State private var chatsForUser = [Chat]()
-    @State private var selectedChat:Chat?
+    @State private var selectedChatId:Int?
     @State private var showFullChat = false
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chatsIds: [String]())}
@@ -68,7 +68,7 @@ struct MainView: View {
         }
         .ignoresSafeArea()
         .sheet(isPresented: $showFullChat,onDismiss: {
-            self.selectedChat = nil
+            self.selectedChatId = nil
             DispatchQueue.global().async {
                 if self.userDataStore.messageListener.first != nil{
                     self.userDataStore.messageListener.first?.remove()
@@ -77,8 +77,10 @@ struct MainView: View {
           
             
         }){
-            if selectedChat != nil{
-                FullChatView(chat: selectedChat!)
+            if selectedChatId != nil{
+                if userDataStore.chatsForUser[selectedChatId!] != nil{
+                    FullChatView(chat:userDataStore.chatsForUser[selectedChatId!] )
+                }
             }
         }
         
@@ -97,8 +99,10 @@ struct MainView: View {
                                 .environmentObject(userDataStore)
                                 .padding(.bottom)
                                 .onTapGesture {
-                                    self.selectedChat = chat
-                                    self.showFullChat = true
+                                    if let index = userDataStore.chatsForUser.firstIndex(where: {$0.id == chat.id}){
+                                        self.selectedChatId = index
+                                        self.showFullChat = true
+                                    }
                                 }
                             Divider()
                                 .frame(width: screen.width / 1.10)

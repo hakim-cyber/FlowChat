@@ -18,6 +18,12 @@ struct FullChatView: View {
         guard let userusingAppId = Auth.auth().currentUser?.uid else{return ""}
         return userusingAppId
     }
+    var chatMain:Chat?{
+        self.userDataStore.chatsForUser.first(where: {$0.id == chat.id})
+    }
+    var sortedMessages:[Message]{
+     return   messages.sorted{stringToDate(string: $0.date) < stringToDate(string: $1.date)}
+    }
     var body: some View {
         
         ZStack{
@@ -25,7 +31,7 @@ struct FullChatView: View {
             
             ScrollView{
                 VStack(spacing: 30){
-                    ForEach(self.messages , id:\.id){message in
+                    ForEach(sortedMessages, id:\.id){message in
                         HStack{
                             if message.senderID == idOfuserUsingApp{
                                 Spacer()
@@ -44,8 +50,17 @@ struct FullChatView: View {
                 
         }
         .onAppear{
-            userDataStore.fetchMessagesForChat(chat: chat){messages in
-                self.messages = messages
+            if chatMain != nil{
+                userDataStore.fetchMessagesForChat(chat: chatMain!){messages in
+                    self.messages = messages
+                }
+            }
+        }
+        .onChange(of: chatMain?.messagesID.count){_ in
+            if chatMain != nil{
+                userDataStore.fetchMessagesForChat(chat: chatMain!){messages in
+                    self.messages = messages
+                }
             }
         }
         .safeAreaInset(edge: .bottom){
@@ -99,6 +114,7 @@ struct FullChatView: View {
                HStack{
                    Text(message.content)
                        .padding(3)
+                       .foregroundColor(.white)
                }
            }
            
@@ -119,6 +135,13 @@ struct FullChatView: View {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dateString = dateFormatter.string(from: date)
         return dateString
+    }
+    func stringToDate(string:String)->Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    let reverseDate = dateFormatter.date(from: string)
+        return reverseDate ?? Date.now
+       
     }
     func sendMessage(){
         let messageId = UUID().uuidString
