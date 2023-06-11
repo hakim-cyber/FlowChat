@@ -130,79 +130,62 @@ class UserDataStore: ObservableObject {
                         print(error)
                     }
                 }
-               do{
-                    let id = Auth.auth().currentUser?.uid
-                    
-                   if let user = newUsers.first(where:{$0.id == id}){
-                       DispatchQueue.global().async {
-                           self?.fetchChatsForUser(user: user){chats in
-                               self?.chatsForUser = chats
-                               print("fetched chats")
-                               print(chats.count)
-                       }
-                      
-                       }
-                   }
-                
-                
-               }catch{
-                   print(error)
-               }
+            
                 
                 DispatchQueue.main.async {
                     withAnimation(.easeInOut){
                         
                         self?.users = newUsers
+                        print(self?.users.count ?? 0)
+                        let id = Auth.auth().currentUser?.uid
+                        
+                        if let user = self?.users.first(where: {$0.id == id}){
+                            self?.fetchChatsForUser(user: user)
+                        }
+                        
                     }
-                    print(self?.users.count ?? 0)
+                   
                 }
             }
            
         }
     }
     
-     func fetchChatsForUser(user: User, completion: @escaping ([Chat]) -> Void) {
+     func fetchChatsForUser(user: User) {
          let chatIDs = user.chatsIds
          var fetchedChats = [Chat]()
 
-         let dispatchGroup = DispatchGroup()
-         let dispatchQueue = DispatchQueue(label: "com.example.fetchchats", attributes: .concurrent)
-
-         // Iterate over each chat ID
-         for chatID in chatIDs {
-             dispatchGroup.enter()
-             dispatchQueue.async {
-                 // Set up a listener for the chat document
-                 let chatRef = self.db.collection("chats").document(chatID)
-                 let listener = chatRef.addSnapshotListener { (documentSnapshot, error) in
-                     guard let document = documentSnapshot else {
-                         print("Error fetching chat: \(error)")
-                         return
-                     }
-                     
-                     if document.exists {
-                         do {
-                             // Parse the chat data and update the fetchedChats array
-                             if let chat = try? document.data(as: Chat.self) {
-                                 if let index = fetchedChats.firstIndex(where: { $0.id == chat.id }) {
-                                     fetchedChats[index] = chat
-                                 } else {
-                                     fetchedChats.append(chat)
-                                 }
-                             }
-                         } catch {
-                             print("Error parsing chat: \(error)")
+         DispatchQueue.global().async {
+            let listener = self.db.collection("chats").addSnapshotListener { [weak self] (querySnapshot, error) in
+                 guard let documents = querySnapshot?.documents else {
+                     print("No documents")
+                     return
+                 }
+                fetchedChats = []
+                 for doc in documents {
+                     if chatIDs.contains(doc.documentID){
+                         do{
+                             let newChat = try doc.data(as: Chat.self)
+                             fetchedChats.append(newChat)
+                         }catch{
+                             print(error)
                          }
                      }
-                     
-                     dispatchGroup.leave() // Move this line inside the closure
+                 }
+             
+                 
+                 DispatchQueue.main.async {
+                     withAnimation(.easeInOut){
+                         
+                         self?.chatsForUser = fetchedChats
+                         print("fetched chats")
+                         print(fetchedChats.count)
+                         
+                     }
+                    
                  }
              }
-         }
-
-         // Notify the completion closure when all chat fetch operations have completed
-         dispatchGroup.notify(queue: DispatchQueue.global()) {
-             completion(fetchedChats)
+            
          }
      }
     
