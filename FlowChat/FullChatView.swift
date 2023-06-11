@@ -32,23 +32,45 @@ struct FullChatView: View {
                 .ignoresSafeArea()
             
             ScrollView{
-                VStack(spacing: 30){
-                    ForEach(sortedMessages, id:\.id){message in
-                        HStack{
-                            if message.senderID == idOfuserUsingApp{
-                                Spacer()
+                ScrollViewReader{value in
+                    
+                    
+                    VStack(spacing: 30){
+                        ForEach(sortedMessages, id:\.id){message in
+                            HStack{
+                                if message.senderID == idOfuserUsingApp{
+                                    Spacer()
+                                }
+                                messageItem(message: message)
+                                if message.senderID != idOfuserUsingApp{
+                                    Spacer()
+                                }
                             }
-                            messageItem(message: message)
-                            if message.senderID != idOfuserUsingApp{
-                                Spacer()
+                            .id(message.id)
+                        }
+                    }
+                    .padding(.horizontal,10)
+                   
+                    .onAppear{
+                        withAnimation{
+                            if sortedMessages.count > 0{
+                                value.scrollTo(sortedMessages.last?.id)
                             }
                         }
                     }
+                    .onChange(of: sortedMessages.count){_ in
+                        withAnimation {
+                            
+                            if sortedMessages.count > 0{
+                                value.scrollTo(sortedMessages.last?.id)
+                            }
+                        }
+                    }
+                    .padding(.vertical,20)
                 }
-                .padding(.horizontal,10)
-                .padding(.vertical,20)
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity , alignment: .top)
+           
           
                 
         }
@@ -58,7 +80,9 @@ struct FullChatView: View {
                     self.messages = messages
                 }
             }
+            
         }
+        
         .onChange(of: chatMain?.messagesID.count){_ in
             if chatMain != nil{
                 userDataStore.fetchMessagesForChat(chat: chatMain!){messages in
@@ -108,6 +132,13 @@ struct FullChatView: View {
                     .disabled(newMessageText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                     
             }
+        }
+        .safeAreaInset(edge: .top){
+            Rectangle()
+                .fill(Color.white)
+                .frame(width: screen.width / 7,height:2)
+                .padding(.top,6)
+               
         }
     }
     @ViewBuilder
