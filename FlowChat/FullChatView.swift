@@ -90,6 +90,7 @@ struct FullChatView: View {
                         .frame(width: screen.width / 1.3)
                         .textFieldStyle(.plain)
                         .multilineTextAlignment(.leading)
+                        
                 
               
                     Button{
@@ -102,6 +103,7 @@ struct FullChatView: View {
                             .foregroundColor(.purple)
                             .frame(width: screen.width * 0.20/3)
                     }
+                    .disabled(newMessageText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                     
             }
         }
@@ -118,7 +120,7 @@ struct FullChatView: View {
                     .frame(width: 30)
                 VStack(alignment: .leading){
                     
-                    Text(message.content)
+                    Text(message.content.trimmingCharacters(in: .whitespacesAndNewlines))
                         .foregroundColor(.white)
                     
                     HStack{
