@@ -219,11 +219,12 @@ class UserDataStore: ObservableObject {
                                     fetchedMessages.append(message)
                                 }
                             }
+                           
                         } catch {
                             print("Error parsing message: \(error)")
                         }
                     }
-                    
+                    completion(fetchedMessages)
                     dispatchGroup.leave()
                 }
                 
@@ -237,10 +238,7 @@ class UserDataStore: ObservableObject {
         }
        
         // Notify the completion closure when all chat fetch operations have completed
-        dispatchGroup.notify(queue: DispatchQueue.main) {
-           
-            completion(fetchedMessages)
-        }
+       
     }
      
     
