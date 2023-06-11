@@ -14,6 +14,7 @@ struct MainView: View {
     @State private var showAddView = false
     @State private var chatsForUser = [Chat]()
     @State private var selectedChatId:Int?
+    @State private var chatTitle = ""
     @State private var showFullChat = false
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chatsIds: [String]())}
@@ -46,7 +47,7 @@ struct MainView: View {
         }
         .overlay{
             if showAddView{
-                AddView(){ participants in
+                AddView(){participants , title in
                     if participants.count <= 1{
                       // nothing to do
                         withAnimation(.easeInOut(duration: 0.3)){
@@ -57,7 +58,9 @@ struct MainView: View {
                     }else{
                         // add new chat with participants
                         withAnimation(.easeInOut(duration: 0.3)){
-                            self.userDataStore.addChat(participantIds: participants)
+                           
+                                self.userDataStore.addChat(participantIds: participants, title: title)
+                            
                                 showAddView.toggle()
                             
                         }
@@ -83,7 +86,7 @@ struct MainView: View {
                 }
             }
         }
-        
+       
        
        
     }

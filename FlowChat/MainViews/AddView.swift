@@ -10,7 +10,9 @@ import Firebase
 struct AddView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     @State private var participants = [User]()
-    var addParticipants:([String]) -> Void
+    var addParticipants:([String],String) -> Void
+    @State private var askForTitle = false
+    @State private var title = ""
     @State private var screen = UIScreen.main.bounds.size
     let rows = [
            GridItem(.fixed(UIScreen.main.bounds.size.height / 14)),
@@ -25,7 +27,7 @@ struct AddView: View {
                 HStack{
                     Button{
                         // close
-                        addParticipants([String]())
+                        addParticipants([String](),"")
                     }label: {
                         Image(systemName: "xmark")
                             
@@ -74,7 +76,7 @@ struct AddView: View {
                 HStack{
                     Spacer()
                     Button{
-                        addParticipants(usersId(users: participants))
+                        self.askForTitle = true
                     }label: {
                         Text("Start Chat")
                             .padding(5)
@@ -90,7 +92,20 @@ struct AddView: View {
             .padding()
         }
         .frame(width: screen.width / 1.05,height: screen.height / 3 )
-        .onAppear(perform: addMe)
+        .onAppear{
+            addMe()
+            self.title = ""
+        }
+        .alert("Chat Title", isPresented: $askForTitle){
+            TextField("", text: $title)
+            Button("Add"){
+                addParticipants(usersId(users: participants),title)
+                
+               
+            }
+           
+           
+        }
     }
     func useImage(text:String)->Image{
         let data = Data(base64Encoded: text) ?? Data()
@@ -117,7 +132,7 @@ struct AddView: View {
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView(){_ in
+        AddView(){_ , _ in
             
         }
             .environmentObject(UserDataStore())

@@ -41,6 +41,7 @@ struct User:Codable{
 
 struct Chat:Codable{
     @DocumentID var id:String?
+    var title:String?
     var participantsID:[String]
     var messagesID = [String]()
 }

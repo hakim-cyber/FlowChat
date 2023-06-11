@@ -45,11 +45,13 @@ class UserDataStore: ObservableObject {
             }
         }
     }
-    func addChat(participantIds:[String]){
+    func addChat(participantIds:[String],title:String){
         let chatsRef = db.collection("chats")
         let usersRef = db.collection("users")
         let uid = UUID().uuidString
-        let chat = Chat(id: uid, participantsID: participantIds)
+        let chat = Chat(id: uid,title: title, participantsID: participantIds)
+        
+          
         
         DispatchQueue.global().sync {
            
