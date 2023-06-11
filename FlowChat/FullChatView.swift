@@ -66,34 +66,43 @@ struct FullChatView: View {
             }
         }
         .safeAreaInset(edge: .bottom){
-            HStack(spacing: 10){
-                Button{
-                    //features
-                }label: {
-                    Image(systemName: "plus")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.purple)
-                        .frame(width: screen.width * 0.20/4)
-                }
-                TextField("Write Message", text: $newMessageText)
-                    .padding()
-                    .background(.thinMaterial)
-                    .cornerRadius(10)
-                    .shadow(color:.gray,radius: 5)
-                    .frame(width: screen.width / 1.3)
-                    .textFieldStyle(.plain)
-                    .multilineTextAlignment(.leading)
-                Button{
-                    //send
-                    sendMessage()
-                }label: {
-                    Image(systemName: "airplane.departure")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.purple)
-                        .frame(width: screen.width * 0.20/3)
-                }
+            HStack(alignment: .center,spacing: 10){
+               
+                    
+                    Button{
+                        //features
+                    }label: {
+                        Image(systemName: "plus")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.purple)
+                            .frame(width: screen.width * 0.20/4)
+                    }
+                  
+                
+               
+                    TextField("Write Message", text: $newMessageText,axis:.vertical)
+                        .padding()
+                        .background(.thinMaterial)
+                        .lineLimit(4)
+                        .cornerRadius(10)
+                        .shadow(color:.gray,radius: 5)
+                        .frame(width: screen.width / 1.3)
+                        .textFieldStyle(.plain)
+                        .multilineTextAlignment(.leading)
+                
+              
+                    Button{
+                        //send
+                        sendMessage()
+                    }label: {
+                        Image(systemName: "airplane.departure")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.purple)
+                            .frame(width: screen.width * 0.20/3)
+                    }
+                    
             }
         }
     }
