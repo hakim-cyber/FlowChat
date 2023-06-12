@@ -109,7 +109,19 @@ struct AddView: View {
             }
            
            
+           
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                       
+                   // Give a moment for the screen boundaries to change after
+                   // the device is rotated
+                   Task { @MainActor in
+                       try await Task.sleep(for: .seconds(0.1))
+                       withAnimation{
+                           self.screen = UIScreen.main.bounds.size
+                       }
+                   }
+               }
     }
     func useImage(text:String)->Image{
         let data = Data(base64Encoded: text) ?? Data()
