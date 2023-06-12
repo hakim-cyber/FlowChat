@@ -57,7 +57,7 @@ struct chatItemView: View {
             
         }
         
-        .frame(width: screen.width / 1.10, height: screen.height / 24)
+        .frame(width: screen.width / 1.10, height: screen.height / 26)
         .onAppear{
             self.userStore.fetchLastMessages{
                 self.fetchLastMessage()
@@ -95,7 +95,7 @@ struct chatItemView: View {
                     .offset(x:offsetForImage(user: user))
             }
         }
-        .frame(height: screen.height / 24)
+        .frame( height: screen.height / 26)
         .padding(.vertical,10)
         .padding(.trailing)
     }

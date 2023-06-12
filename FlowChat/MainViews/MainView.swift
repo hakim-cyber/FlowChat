@@ -28,7 +28,7 @@ struct MainView: View {
     }
     var body: some View {
         ZStack{
-            Image("photo10")
+            Image("photo11")
                 .resizable()
                 .ignoresSafeArea()
                 
