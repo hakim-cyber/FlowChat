@@ -121,7 +121,9 @@ struct FullChatView: View {
               
                     Button{
                         //send
-                        sendMessage()
+                        withAnimation(.easeInOut){
+                            sendMessage()
+                        }
                     }label: {
                         Image(systemName: "airplane.departure")
                             .resizable()
