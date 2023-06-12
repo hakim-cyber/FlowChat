@@ -97,7 +97,7 @@ struct MainView: View {
                    // Give a moment for the screen boundaries to change after
                    // the device is rotated
                    Task { @MainActor in
-                       try await Task.sleep(for: .seconds(0.00000001))
+                       try await Task.sleep(for: .seconds(0.1))
                        withAnimation {
                            self.screen = UIScreen.main.bounds.size
                        }
