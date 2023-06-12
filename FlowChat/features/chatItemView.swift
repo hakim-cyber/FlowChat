@@ -60,7 +60,7 @@ struct chatItemView: View {
         .frame(width: screen.width / 1.15, height: screen.height / 20)
         .padding(10)
         .background(
-        RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 20,style: .continuous)
             .stroke(.gray)
         )
         
