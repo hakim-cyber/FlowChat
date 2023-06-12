@@ -16,6 +16,7 @@ struct MainView: View {
     @State private var selectedChatId:Int?
     @State private var chatTitle = ""
     @State private var showFullChat = false
+    @Environment(\.colorScheme) var colorScheme
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chatsIds: [String]())}
        
@@ -116,7 +117,7 @@ struct MainView: View {
            
         }
        
-        .background(.white)
+        .background(colorScheme == .light ? .white: .gray)
         .roundedCorner(35, corners: [.topLeft,.topRight])
         .frame(width: screen.width,height: screen.height * 0.60)
       

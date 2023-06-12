@@ -37,7 +37,7 @@ struct chatItemView: View {
                 if lastMessage != nil{
                     Text("\(lastMessage!.content)")
                         .font(.caption)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                 }
             }
             .padding(.vertical,10)
@@ -47,8 +47,7 @@ struct chatItemView: View {
                 if lastMessage != nil{
                     Text("\(stringToDate(string: lastMessage!.date).formatted(date: .omitted, time: .shortened))")
                         .font(.caption)
-                        .fontWeight(.ultraLight)
-                        .foregroundColor(.black)
+                        .foregroundColor(.secondary)
                 }
                 
                
@@ -61,7 +60,7 @@ struct chatItemView: View {
         .padding(10)
         .background(
             RoundedRectangle(cornerRadius: 20,style: .continuous)
-            .stroke(.gray)
+            .stroke(.secondary)
         )
         
         .onAppear{
@@ -87,7 +86,7 @@ struct chatItemView: View {
             }
             
         }
-        .foregroundColor(.black)
+
        
     }
     var images:some View{
