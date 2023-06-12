@@ -18,6 +18,8 @@ struct MainView: View {
     @State private var chatTitle = ""
     @State private var showFullChat = false
     @Environment(\.colorScheme) var colorScheme
+    
+    @AppStorage("background") var background = 1
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chatsIds: [String]())}
        
@@ -30,7 +32,7 @@ struct MainView: View {
     }
     var body: some View {
         ZStack{
-            Image("photo11")
+            Image("photo\(background)")
                 .resizable()
                 .ignoresSafeArea()
                 
@@ -173,6 +175,41 @@ struct MainView: View {
         .padding(.top,20)
         .padding(.leading)
     }
+    var customMenu:some View{
+        Menu{
+            Button{
+              //schedule message
+            }label: {
+                HStack{
+                   
+                    Image(systemName: "calendar.badge.clock")
+                    
+                    Text("Schedule Message")
+                }
+            }
+            Menu{
+                Menu{
+                    Picker("",selection: $background){
+                        ForEach(1...10,id: \.self){
+                           Text("photo \($0)")
+                                .id($0)
+                        }
+                    }
+                    .labelsHidden()
+                }label: {
+                    Text("Background")
+                    Image(systemName: "photo.tv")
+                }
+            }label: {
+                Text("Settings")
+                Image(systemName: "gear")
+            }
+        }label: {
+            Image(systemName: "filemenu.and.cursorarrow")
+                .bold()
+                .foregroundColor(.white)
+        }
+    }
     var header:some View{
         VStack(spacing: 5){
             HStack{
@@ -180,13 +217,7 @@ struct MainView: View {
                     .foregroundColor(.gray)
                     .font(.callout)
                 Spacer()
-                Button{
-                    
-                }label: {
-                    Image(systemName: "filemenu.and.cursorarrow")
-                        .foregroundColor(.white)
-                        .bold()
-                }
+               customMenu
             }
             .padding(.horizontal,20)
             HStack{

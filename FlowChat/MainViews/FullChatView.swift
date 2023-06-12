@@ -16,6 +16,7 @@ struct FullChatView: View {
     @State private var newMessageText = ""
     @State private var screen = UIScreen.main.bounds.size
     @FocusState var messagefocused
+    @AppStorage("background") var background = 1
     var idOfuserUsingApp:String{
         guard let userusingAppId = Auth.auth().currentUser?.uid else{return ""}
         return userusingAppId
@@ -29,7 +30,7 @@ struct FullChatView: View {
     var body: some View {
         
         ZStack{
-            Image("photo11")
+            Image("photo\(background)")
                 .resizable()
                 .ignoresSafeArea()
             

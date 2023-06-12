@@ -14,6 +14,7 @@ import FirebaseFirestoreSwift
 
 class UserDataStore: ObservableObject {
     let db = Firestore.firestore()
+
     @Published var users = [User]()
     @Published var chatsForUser = [Chat]()
     @Published var lastMessages = [String:Message]()
