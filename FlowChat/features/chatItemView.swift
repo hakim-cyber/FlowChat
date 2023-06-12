@@ -117,7 +117,7 @@ struct chatItemView: View {
     }
     func offsetForImage(user:User)->CGFloat{
         if let index = participants.firstIndex(where: {$0.id == user.id}){
-            return CGFloat(index * -7)
+            return CGFloat(index * 7)
         }else{
             return CGFloat.zero
         }

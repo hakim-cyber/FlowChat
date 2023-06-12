@@ -190,7 +190,7 @@ struct MainView: View {
             Menu{
                 Menu{
                     Picker("",selection: $background){
-                        ForEach(1...10,id: \.self){
+                        ForEach(1...11,id: \.self){
                            Text("photo \($0)")
                                 .id($0)
                         }
