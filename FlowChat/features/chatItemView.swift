@@ -36,9 +36,8 @@ struct chatItemView: View {
                 Spacer()
                 if lastMessage != nil{
                     Text("\(lastMessage!.content)")
-                        .font(.callout)
-                        .fontWeight(.ultraLight)
-                        .foregroundColor(.black)
+                        .font(.caption)
+                        .foregroundColor(.gray)
                 }
             }
             .padding(.vertical,10)
@@ -52,10 +51,7 @@ struct chatItemView: View {
                         .foregroundColor(.black)
                 }
                 
-                Spacer()
-                Text("✓")
-                    .fontWeight(.medium)
-                    .foregroundColor(.purple)
+               
             }
             .padding(.vertical,10)
             

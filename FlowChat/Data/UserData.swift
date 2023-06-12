@@ -199,30 +199,34 @@ class UserDataStore: ObservableObject {
         var messages = [String:Message]()
         
         let dispatchGroup = DispatchGroup()
-
-        for chat in chatsForUser {
-            if let id = chat.messagesID.last {
-                dispatchGroup.enter()
-                messagesRef.document(id).getDocument { document, error in
-                    defer { dispatchGroup.leave() }
-                    // Existing code to handle document retrieval
-                    if let error = error as! NSError?{
-                                    print("Error getting users document")
-                    }else{
-                        if let document = document{
-                            do{
-                                let newMessage =  try document.data(as: Message.self)
-                                messages[chat.id!] = newMessage
-                            }catch{
-                                print(error)
-                            }
+       
+            
+            
+            
+            for chat in chatsForUser {
+                if let id = chat.messagesID.last {
+                    dispatchGroup.enter()
+                    messagesRef.document(id).getDocument { document, error in
+                        defer { dispatchGroup.leave() }
+                        // Existing code to handle document retrieval
+                        if let error = error as! NSError?{
+                            print("Error getting users document")
                         }else{
-                            print("no document")
+                            if let document = document{
+                                do{
+                                    let newMessage =  try document.data(as: Message.self)
+                                    messages[chat.id!] = newMessage
+                                }catch{
+                                    print(error)
+                                }
+                            }else{
+                                print("no document")
+                            }
                         }
                     }
                 }
             }
-        }
+        
 
         dispatchGroup.notify(queue: .main) {
             self.lastMessages = messages
