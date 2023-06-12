@@ -151,6 +151,17 @@ struct FullChatView: View {
             .scrollDisabled(true)
             
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                       
+                   // Give a moment for the screen boundaries to change after
+                   // the device is rotated
+                   Task { @MainActor in
+                       try await Task.sleep(for: .seconds(0.00000001))
+                       withAnimation {
+                           self.screen = UIScreen.main.bounds.size
+                       }
+                   }
+               }
     }
     @ViewBuilder
     func messageItem(message:Message) -> some View{

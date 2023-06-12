@@ -11,6 +11,7 @@ import Firebase
 
 struct MainView: View {
     @EnvironmentObject var userDataStore:UserDataStore
+    
     @State private var screen = UIScreen.main.bounds.size
     @State private var showAddView = false
     @State private var chatsForUser = [Chat]()
@@ -34,6 +35,7 @@ struct MainView: View {
         ZStack{
             Image("photo\(background)")
                 .resizable()
+                .frame(width: screen.width , height: screen.height)
                 .ignoresSafeArea()
                 
             
@@ -90,7 +92,17 @@ struct MainView: View {
                 }
             }
         }
-       
+        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                       
+                   // Give a moment for the screen boundaries to change after
+                   // the device is rotated
+                   Task { @MainActor in
+                       try await Task.sleep(for: .seconds(0.00000001))
+                       withAnimation {
+                           self.screen = UIScreen.main.bounds.size
+                       }
+                   }
+               }
        
        
     }
@@ -252,6 +264,7 @@ struct MainView: View {
             ListOfAllUsers
         }
         .frame(width: screen.width,height: screen.height * 0.40)
+        .padding(.horizontal)
     }
     func useImage(text:String)->Image{
         let data = Data(base64Encoded: text) ?? Data()
