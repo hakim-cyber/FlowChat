@@ -24,6 +24,7 @@ struct chatItemView: View {
         users.removeAll(where: {$0.id == uid })
         return users
     }
+    @State private var lastMessage:Message?
     var body: some View {
         HStack( spacing: 5){
         images
@@ -33,19 +34,24 @@ struct chatItemView: View {
             VStack(alignment: .leading){
                names
                 Spacer()
-                Text("latest message")
-                    .font(.callout)
-                    .fontWeight(.ultraLight)
-                    .foregroundColor(.black)
+                if lastMessage != nil{
+                    Text("\(lastMessage!.content)")
+                        .font(.callout)
+                        .fontWeight(.ultraLight)
+                        .foregroundColor(.black)
+                }
             }
             .padding(.vertical,10)
             .padding(.leading,10)
             Spacer()
             VStack{
-                Text("10:00 am")
-                    .font(.caption)
-                    .fontWeight(.ultraLight)
-                    .foregroundColor(.black)
+                if lastMessage != nil{
+                    Text("\(stringToDate(string: lastMessage!.date).formatted(date: .omitted, time: .shortened))")
+                        .font(.caption)
+                        .fontWeight(.ultraLight)
+                        .foregroundColor(.black)
+                }
+                
                 Spacer()
                 Text("✓")
                     .fontWeight(.medium)
@@ -56,7 +62,18 @@ struct chatItemView: View {
         }
         
         .frame(width: screen.width / 1.10, height: screen.height / 24)
+        .onAppear{
+            self.userStore.fetchLastMessages{
+                self.fetchLastMessage()
+            }
+        }
+        .onChange(of: self.chat.messagesID.count){ _ in
+            self.userStore.fetchLastMessages{
+                self.fetchLastMessage()
+            }
+        }
     }
+     
     var names:some View{
         HStack{
             if participants.count > 1{
@@ -86,7 +103,13 @@ struct chatItemView: View {
         .padding(.vertical,10)
         .padding(.trailing)
     }
-    
+    func stringToDate(string:String)->Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    let reverseDate = dateFormatter.date(from: string)
+        return reverseDate ?? Date.now
+       
+    }
     func useImage(text:String)->Image{
         let data = Data(base64Encoded: text) ?? Data()
         
@@ -101,11 +124,16 @@ struct chatItemView: View {
             return CGFloat.zero
         }
     }
+    func fetchLastMessage(){
+        withAnimation{
+            self.lastMessage = self.userStore.lastMessages[chat.id!] ?? nil
+        }
+    }
 }
 
 struct chatItemView_Previews: PreviewProvider {
     static var previews: some View {
-        chatItemView(chat: Chat(participantsID: [UUID().uuidString,UUID().uuidString]))
+        chatItemView(chat: Chat(id:"",participantsID: [UUID().uuidString,UUID().uuidString]))
             .environmentObject(UserDataStore())
     }
 }

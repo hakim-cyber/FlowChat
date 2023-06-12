@@ -16,6 +16,7 @@ class UserDataStore: ObservableObject {
     let db = Firestore.firestore()
     @Published var users = [User]()
     @Published var chatsForUser = [Chat]()
+    @Published var lastMessages = [String:Message]()
     
     var messageListener = [ListenerRegistration]()
    var chatListeners = [ListenerRegistration]()
@@ -85,6 +86,7 @@ class UserDataStore: ObservableObject {
     func addMessage(message:Message, to chat:Chat){
         let chatsref = db.collection("chats")
         let messagesRef = db.collection("messages")
+   
       
         DispatchQueue.global().sync {
             
@@ -181,15 +183,53 @@ class UserDataStore: ObservableObject {
                          self?.chatsForUser = fetchedChats
                          print("fetched chats")
                          print(fetchedChats.count)
+                                          
                          
                      }
                     
                  }
+                
              }
             
          }
+        
      }
-    
+    func fetchLastMessages(completion:@escaping ()->Void){
+        let messagesRef = db.collection("messages")
+        var messages = [String:Message]()
+        
+        let dispatchGroup = DispatchGroup()
+
+        for chat in chatsForUser {
+            if let id = chat.messagesID.last {
+                dispatchGroup.enter()
+                messagesRef.document(id).getDocument { document, error in
+                    defer { dispatchGroup.leave() }
+                    // Existing code to handle document retrieval
+                    if let error = error as! NSError?{
+                                    print("Error getting users document")
+                    }else{
+                        if let document = document{
+                            do{
+                                let newMessage =  try document.data(as: Message.self)
+                                messages[chat.id!] = newMessage
+                            }catch{
+                                print(error)
+                            }
+                        }else{
+                            print("no document")
+                        }
+                    }
+                }
+            }
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            self.lastMessages = messages
+            completion()
+        }
+       
+    }
     
     func fetchMessagesForChat(chat: Chat, completion: @escaping ([Message]) -> Void) {
         let messageIds = chat.messagesID
