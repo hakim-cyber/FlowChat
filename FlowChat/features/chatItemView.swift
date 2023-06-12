@@ -57,7 +57,13 @@ struct chatItemView: View {
             
         }
         
-        .frame(width: screen.width / 1.10, height: screen.height / 26)
+        .frame(width: screen.width / 1.15, height: screen.height / 20)
+        .padding(10)
+        .background(
+        RoundedRectangle(cornerRadius: 10)
+            .stroke(.gray)
+        )
+        
         .onAppear{
             self.userStore.fetchLastMessages{
                 self.fetchLastMessage()
@@ -129,7 +135,7 @@ struct chatItemView: View {
 
 struct chatItemView_Previews: PreviewProvider {
     static var previews: some View {
-        chatItemView(chat: Chat(id:"",participantsID: [UUID().uuidString,UUID().uuidString]))
+        chatItemView(chat: Chat(id:"",title: "Hakim",participantsID: [UUID().uuidString,UUID().uuidString]))
             .environmentObject(UserDataStore())
     }
 }

@@ -95,7 +95,7 @@ struct MainView: View {
         VStack{
             Spacer()
             ScrollView(.vertical){
-                VStack(spacing: 30){
+                VStack(spacing: 0){
                     ForEach(userDataStore.chatsForUser, id:\.id){chat in
                         VStack(){
                             chatItemView(chat: chat)
@@ -107,9 +107,6 @@ struct MainView: View {
                                         self.showFullChat = true
                                     }
                                 }
-                            Divider()
-                                .frame(width: screen.width / 1.10)
-                                .overlay(.secondary)
                         }
                     }
                     
@@ -121,7 +118,7 @@ struct MainView: View {
        
         .background(.white)
         .roundedCorner(30, corners: [.topLeft,.topRight])
-        .frame(width: screen.width,height: screen.height * 0.60)
+        .frame(width: screen.width,height: screen.height * 0.55)
       
         .ignoresSafeArea()
        
@@ -218,8 +215,7 @@ struct MainView: View {
             .padding(.top,14)
             ListOfAllUsers
         }
-        .padding(.top,34)
-        .frame(width: screen.width,height: screen.height * 0.4)
+        .frame(width: screen.width,height: screen.height * 0.45)
     }
     func useImage(text:String)->Image{
         let data = Data(base64Encoded: text) ?? Data()
