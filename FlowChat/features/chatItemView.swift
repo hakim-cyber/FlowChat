@@ -56,12 +56,9 @@ struct chatItemView: View {
             
         }
         
-        .frame(width: screen.width / 1.15, height: screen.height / 20)
-        .padding(10)
-        .background(
-            RoundedRectangle(cornerRadius: 20,style: .continuous)
-            .stroke(.secondary)
-        )
+        .frame(width: screen.width / 1.15, height: screen.height / 25)
+        .padding(5)
+       
         
         .onAppear{
             self.userStore.fetchLastMessages{
@@ -96,12 +93,11 @@ struct chatItemView: View {
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
-                    .frame(height: screen.height / ( 24 ))
+                    .frame(height: screen.height / ( 20 ))
                     .offset(x:offsetForImage(user: user))
             }
         }
-        .frame( height: screen.height / 26)
-        .padding(.vertical,10)
+        .frame( height: screen.height / 20)
         .padding(.trailing)
     }
     func stringToDate(string:String)->Date{

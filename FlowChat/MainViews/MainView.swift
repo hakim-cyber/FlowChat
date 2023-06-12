@@ -111,7 +111,8 @@ struct MainView: View {
                         }
                     }
                     
-                }  .padding(.vertical,20)
+                }
+                .padding(.vertical,20)
             }
             .frame(maxWidth: .infinity,maxHeight:.infinity,alignment:.bottom)
            
