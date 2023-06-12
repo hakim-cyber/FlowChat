@@ -10,6 +10,7 @@ import Firebase
 
 struct FullChatView: View {
     @EnvironmentObject var userDataStore:UserDataStore
+    @Environment(\.dismiss) var dismiss
     var chat:Chat
     @State private var messages = [Message]()
     @State private var newMessageText = ""
@@ -138,11 +139,16 @@ struct FullChatView: View {
             }
         }
         .safeAreaInset(edge: .top){
-            Rectangle()
-                .fill(Color.white)
-                .frame(width: screen.width / 7,height:2)
-                .padding(.top,6)
-               
+            ZStack{
+                Rectangle()
+                    .fill(Color.white)
+                    .frame(width: screen.width / 7,height:2)
+                    .padding(.top,6)
+                    
+            }
+            .frame(width: screen.width / 7,height:10)
+            .scrollDisabled(true)
+            
         }
     }
     @ViewBuilder

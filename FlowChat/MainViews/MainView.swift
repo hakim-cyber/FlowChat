@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 
+
 struct MainView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     @State private var screen = UIScreen.main.bounds.size
@@ -96,7 +97,8 @@ struct MainView: View {
         VStack{
             Spacer()
             ScrollView(.vertical,showsIndicators: false){
-                VStack(spacing: 0){
+               
+                VStack(spacing: 10){
                     ForEach(userDataStore.chatsForUser, id:\.id){chat in
                         VStack(){
                             chatItemView(chat: chat)
@@ -112,6 +114,7 @@ struct MainView: View {
                     }
                     
                 }
+                .padding(.top,15)
                 .padding(.vertical,20)
             }
             .frame(maxWidth: .infinity,maxHeight:.infinity,alignment:.bottom)
