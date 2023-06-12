@@ -14,6 +14,7 @@ struct FullChatView: View {
     @State private var messages = [Message]()
     @State private var newMessageText = ""
     @State private var screen = UIScreen.main.bounds.size
+    @FocusState var messagefocused
     var idOfuserUsingApp:String{
         guard let userusingAppId = Auth.auth().currentUser?.uid else{return ""}
         return userusingAppId
@@ -115,7 +116,7 @@ struct FullChatView: View {
                         .frame(width: screen.width / 1.3)
                         .textFieldStyle(.plain)
                         .multilineTextAlignment(.leading)
-                       
+                        .focused($messagefocused)
                         
                 
               
@@ -123,6 +124,7 @@ struct FullChatView: View {
                         //send
                         withAnimation(.easeInOut){
                             sendMessage()
+                            self.messagefocused = false
                         }
                     }label: {
                         Image(systemName: "airplane.departure")
