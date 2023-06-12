@@ -95,7 +95,7 @@ struct MainView: View {
         
         VStack{
             Spacer()
-            ScrollView(.vertical){
+            ScrollView(.vertical,showsIndicators: false){
                 VStack(spacing: 0){
                     ForEach(userDataStore.chatsForUser, id:\.id){chat in
                         VStack(){

@@ -93,12 +93,13 @@ struct chatItemView: View {
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
-                    .frame(height: screen.height / ( 20 ))
+                    .frame(height: screen.height / ( 25 ))
                     .offset(x:offsetForImage(user: user))
             }
         }
-        .frame( height: screen.height / 20)
+        .frame( height: screen.height / 25)
         .padding(.trailing)
+        .padding(.vertical,5)
     }
     func stringToDate(string:String)->Date{
         let dateFormatter = DateFormatter()
