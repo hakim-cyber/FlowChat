@@ -13,6 +13,7 @@ struct MainView: View {
     @EnvironmentObject var userDataStore:UserDataStore
     
     @State private var screen = UIScreen.main.bounds.size
+    @State private var showSchedule = false
     @State private var showAddView = false
     @State private var chatsForUser = [Chat]()
     @State private var selectedChatId:Int?
@@ -43,10 +44,17 @@ struct MainView: View {
         
         .padding(.top)
         .overlay(alignment: .bottom, content: {
-            
+            if showSchedule{
+                ScheduleView(){
+                    withAnimation(.easeInOut(duration: 0.3 )){
+                        self.showSchedule = false
+                    }
+                }
+                .transition(.move(edge: .bottom))
+            }else{
                 content
-                    .transition(.move(edge: .top))
-            
+                    .transition(.move(edge: .bottom))
+            }
         })
         .overlay(alignment: .top){
             header
@@ -191,6 +199,9 @@ struct MainView: View {
         Menu{
             Button{
               //schedule message
+                withAnimation(.easeInOut(duration: 0.3 )){
+                    self.showSchedule = true
+                }
             }label: {
                 HStack{
                    
