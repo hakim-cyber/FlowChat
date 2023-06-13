@@ -103,20 +103,22 @@ struct ScheduleView: View{
                 }
                 .disabled(checkDisable())
                 .buttonStyle(.borderedProminent)
-                .padding(.bottom,10)
+                .padding(.vertical,15)
+               
             }
             .padding()
             .foregroundColor(.black)
             .frame(maxWidth: .infinity,maxHeight:.infinity)
             .background(.white)
             .roundedCorner(35, corners: [.topLeft,.topRight])
-            .frame(width: screen.width,height: currentState != 2 ?screen.height * 0.30 : screen.height * 0.6)
+            .frame(width: screen.width,height: currentState != 2 ?screen.height * 0.40 : screen.height * 0.6)
            
         }
         .onAppear{
             self.selectedChatId = self.userDataStore.chatsForUser.first?.id ?? ""
         }
         .ignoresSafeArea()
+        
         
       
        
