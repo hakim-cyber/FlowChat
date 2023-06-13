@@ -42,28 +42,30 @@ struct ScheduleView: View{
                         Picker("to:",selection: $selectedChatId){
                             ForEach(userDataStore.chatsForUser,id:\.id){chat in
                                 Text("\(chat.title ?? "")")
-                                    .id(chat.id!)
+                                    .tag(chat.id!)
                                     .foregroundColor(.black)
                                   
                             }
                         }
+                        .pickerStyle(.menu)
                        
                     }
                     .transition(.move(edge: .trailing))
                 }else if currentState == 2{
                     VStack{
                         Text("Text :")
-                        TextField("",text: $text,axis: .vertical)
+                       
+                        TextField("",text: $text)
                             .foregroundColor(.black)
-                            .lineLimit(3)
                             .padding(10)
                             .background(RoundedRectangle(cornerRadius: 15).stroke(.gray))
+                            .padding(.horizontal)
                            
                             
                     }
                     .padding(.top,10)
                     .transition(.move(edge: .trailing))
-                  
+                   
                 }else if currentState == 3{
                     Spacer()
                     HStack{
@@ -108,13 +110,14 @@ struct ScheduleView: View{
             .frame(maxWidth: .infinity,maxHeight:.infinity)
             .background(.white)
             .roundedCorner(35, corners: [.topLeft,.topRight])
-            .frame(width: screen.width,height: screen.height * 0.30)
+            .frame(width: screen.width,height: currentState != 2 ?screen.height * 0.30 : screen.height * 0.6)
            
         }
         .onAppear{
             self.selectedChatId = self.userDataStore.chatsForUser.first?.id ?? ""
         }
         .ignoresSafeArea()
+        
       
        
     }

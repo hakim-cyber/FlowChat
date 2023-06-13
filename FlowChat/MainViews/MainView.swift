@@ -50,6 +50,7 @@ struct MainView: View {
                         self.showSchedule = false
                     }
                 }
+                .preferredColorScheme(.dark)
                 .transition(.move(edge: .bottom))
             }else{
                 content

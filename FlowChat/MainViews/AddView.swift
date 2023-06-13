@@ -76,11 +76,8 @@ struct AddView: View {
                 HStack{
                     Spacer()
                     Button{
-                        if participants.count > 2{
                             self.askForTitle = true
-                        }else{
-                            addParticipants(usersId(users: participants),"")
-                        }
+                       
                     }label: {
                         Text("Start Chat")
                             .padding(5)
