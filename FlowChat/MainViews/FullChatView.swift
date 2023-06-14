@@ -13,6 +13,7 @@ struct FullChatView: View {
     @Environment(\.dismiss) var dismiss
     var chat:Chat
     @State private var messages = [Message]()
+   
     @State private var newMessageText = ""
     @State private var screen = UIScreen.main.bounds.size
     @FocusState var messagefocused
@@ -71,8 +72,10 @@ struct FullChatView: View {
                     }
                     .padding(.vertical,20)
                 }
+               
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity , alignment: .top)
+            
            
           
                 
@@ -94,11 +97,47 @@ struct FullChatView: View {
             }
         }
         .safeAreaInset(edge: .bottom){
-            HStack(alignment: .center,spacing: 10){
-               
+            VStack{
+                HStack(alignment: .center,spacing: 10){
                     
-                    Button{
+                    
+                    Menu{
                         //features
+                        
+                        Button("Cancel", role: .destructive){
+                            
+                        }
+                        Button{
+                            //generate text
+                            
+                        }label:{
+                            HStack{
+                                Text(" Text Generator  🤖")
+                               
+                            }
+                          
+                                
+                        }
+                        
+                        Button{
+                            // generate Joke
+                            
+                        }label:{
+                            HStack{
+                                Text(" Joke Generator  🤡")
+                               
+                            }
+                        }
+                        Button{
+                            // automate task
+                            
+                        }label:{
+                            HStack{
+                                Text(" Task Automate  ♼")
+                               
+                            }
+                        }
+                        
                     }label: {
                         Image(systemName: "plus")
                             .resizable()
@@ -107,21 +146,20 @@ struct FullChatView: View {
                             .frame(width: screen.width * 0.20/4)
                     }
                   
-                
-               
+                    
                     TextField("Write Message", text: $newMessageText,axis:.vertical)
-                        .padding()
+                        .padding(10)
                         .background(.thinMaterial)
                         .lineLimit(4)
-                        .cornerRadius(10)
+                        .cornerRadius(20)
                         .shadow(color:.gray,radius: 5)
                         .frame(width: screen.width / 1.3)
                         .textFieldStyle(.plain)
                         .multilineTextAlignment(.leading)
                         .focused($messagefocused)
-                        
-                
-              
+                    
+                    
+                    
                     Button{
                         //send
                         withAnimation(.easeInOut){
@@ -137,6 +175,8 @@ struct FullChatView: View {
                     }
                     .disabled(newMessageText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                     
+                }
+                
             }
         }
         .safeAreaInset(edge: .top){
@@ -162,7 +202,9 @@ struct FullChatView: View {
                        }
                    }
                }
+        
     }
+   
     @ViewBuilder
     func messageItem(message:Message) -> some View{
         return ZStack{

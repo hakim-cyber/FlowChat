@@ -15,3 +15,9 @@ extension Color{
 
 
 
+struct RedMenu: MenuStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Menu(configuration)
+            .foregroundColor(.red)
+    }
+}
