@@ -22,6 +22,9 @@ struct MainView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @AppStorage("background") var background = 1
+    @AppStorage("authType") var authType:String = AuthTypes.none.rawValue
+    @AppStorage("userLogedIn") var userLogedIn = false
+    @AppStorage("InfoAdded")  var InfoAdded = false
     var currentUserData:User{
         guard let uid = Auth.auth().currentUser?.uid else{return User(userName: "non", profileImage: "", chatsIds: [String]())}
        
@@ -224,10 +227,20 @@ struct MainView: View {
                     Text("Background")
                     Image(systemName: "photo.tv")
                 }
+                Button("Sign Out" ,role:.destructive){
+                    self.userDataStore.signOut()
+                    withAnimation(.easeInOut){
+                        self.userLogedIn = false
+                        self.InfoAdded = false
+                        self.authType = AuthTypes.none.rawValue
+                    }
+                    
+                }
             }label: {
                 Text("Settings")
                 Image(systemName: "gear")
             }
+            
         }label: {
             Image(systemName: "filemenu.and.cursorarrow")
                 .bold()

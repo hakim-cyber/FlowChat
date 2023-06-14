@@ -21,6 +21,14 @@ class UserDataStore: ObservableObject {
     
     var messageListener = [ListenerRegistration]()
    var chatListeners = [ListenerRegistration]()
+    
+    func signOut(){
+        do{
+            try Auth.auth().signOut()
+        }catch{
+            print(error)
+        }
+    }
     func updateOrAddUser(user: User) {
         if let id = user.id {
             let docRef = db.collection("users").document(id)

@@ -6,20 +6,20 @@
 //
 
 import SwiftUI
-enum AuthTypes {
-case login,register
+enum AuthTypes:String{
+case login,register,none
 }
 
 struct StartView: View {
-    @State private var authType:AuthTypes?
+    @AppStorage("authType") var authType:String = AuthTypes.none.rawValue
     
     var body: some View {
         ZStack{
             background
             
                
-            if authType != nil{
-                if authType == .login{
+            if authType != AuthTypes.none.rawValue{
+                if authType == AuthTypes.login.rawValue{
                     LoginView()
                         .transition(.move(edge: .top))
                 }else{
@@ -75,7 +75,7 @@ struct StartView: View {
                 Button{
                     //login
                     withAnimation(.interactiveSpring(response: 0.6,dampingFraction: 0.6)){
-                        authType = .login
+                        authType = AuthTypes.login.rawValue
                     }
                 }label: {
                     Text("Login")
@@ -89,7 +89,7 @@ struct StartView: View {
                 Button{
                     //register
                     withAnimation(.interactiveSpring(response: 0.6,dampingFraction: 0.6)){
-                        authType = .register
+                        authType = AuthTypes.register.rawValue
                     }
                 }label: {
                     Text("Register")
