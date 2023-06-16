@@ -14,12 +14,19 @@ final class ChatGptViewModel:ObservableObject{
         client = OpenAISwift(authToken: "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")
     }
     func send(text:String,completion:@escaping(String)->Void){
-        client?.sendCompletion(with: text,maxTokens: 100 ,completionHandler: {result in
+        client?.sendCompletion(with: text,maxTokens: 250 ,completionHandler: {result in
             switch result{
             case .success(let model):
                 let output = model.choices?.first?.text ?? ""
+                if output == ""{
+                    print("Empty")
+                }
+                
                 completion(output)
-            case .failure:
+                print("good")
+            case .failure(let error):
+                print("error")
+                print(error)
                 break
             }
             
@@ -28,21 +35,39 @@ final class ChatGptViewModel:ObservableObject{
 }
 struct integratingChatGpt: View {
     var complete:(String)->Void
-    @ObservedObject var viewModel = ChatGptViewModel()
-    @State private var screen = UIScreen.main.bounds.size
-    @State private var inputText = ""
-    @State private var outputText = ""
+    @StateObject var viewModel = ChatGptViewModel()
+    @State  var screen = UIScreen.main.bounds.size
+    @State  var inputText = ""
+    @State  var outputText = ""
     var body: some View {
         VStack{
             Spacer()
             VStack{
-                TextField("",text: $inputText,axis: .vertical)
-                    .foregroundColor(.black)
-                    .padding(10)
-                    .lineLimit(3)
-                    .background(RoundedRectangle(cornerRadius: 15).stroke(.gray))
-                    .padding(.horizontal)
-                ScrollView(.vertical){
+                HStack{
+                    TextField("",text: $inputText,axis: .vertical)
+                        .foregroundColor(.black)
+                        .padding(10)
+                        .lineLimit(3)
+                        .background(RoundedRectangle(cornerRadius: 15).stroke(.gray))
+                        
+                    Button{
+                        self.viewModel.send(text: inputText){text in
+                            DispatchQueue.main.async {
+                                self.outputText = text
+                                self.inputText = ""
+                            }
+                           
+                        }
+                    }label: {
+                        Text("✈️")
+                            .padding(10)
+                            .background(Circle().stroke(.blue))
+                            
+                    }
+                }
+                
+               
+                ScrollView(.vertical,showsIndicators: false){
                     VStack{
                         Text(self.outputText)
                             .multilineTextAlignment(.leading)
@@ -58,6 +83,9 @@ struct integratingChatGpt: View {
                     Text("Done")
                         .foregroundColor(.white)
                         .padding(.horizontal)
+                      
+                
+                       
                         
                 }
                 .disabled(self.outputText == "")
@@ -70,10 +98,14 @@ struct integratingChatGpt: View {
             .foregroundColor(.black)
             .frame(maxWidth: .infinity,maxHeight:.infinity)
             .background(.white)
-            .roundedCorner(15, corners: [.topLeft,.topRight])
+            .roundedCorner(25, corners: [.topLeft,.topRight])
             .frame(width: screen.width,height: screen.height * 0.35)
         }
+        .foregroundColor(.black)
         .ignoresSafeArea()
+        .onAppear{
+            viewModel.setup()
+        }
     }
 }
 

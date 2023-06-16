@@ -21,11 +21,11 @@ struct FlowChatApp: App {
         WindowGroup {
             ZStack{
                 if InfoAdded && userLogedIn{
-                    ContentView()
-                }else{
-                    StartView()
-                }
-              
+                                 ContentView()
+                             }else{
+                                 StartView()
+                             }
+                           
          
             }
             .environmentObject(userDataStore)
