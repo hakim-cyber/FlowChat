@@ -26,6 +26,8 @@
 		086FFDAA2A2A168E00456A70 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDA92A2A168E00456A70 /* ImagePicker.swift */; };
 		086FFDAE2A2A2BAC00456A70 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDAD2A2A2BAC00456A70 /* UserData.swift */; };
 		086FFDB02A2A2D5400456A70 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FFDAF2A2A2D5400456A70 /* structs.swift */; };
+		087C74402A3C9A7B00D86780 /* integratingChatGpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087C743F2A3C9A7B00D86780 /* integratingChatGpt.swift */; };
+		087C74432A3C9B3500D86780 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 087C74422A3C9B3500D86780 /* OpenAISwift */; };
 		0887D07D2A3882DE00F57319 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0887D07C2A3882DE00F57319 /* ScheduleView.swift */; };
 		0898F2322A2B348D00BD26E8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2312A2B348D00BD26E8 /* MainView.swift */; };
 		0898F2342A2B5F5300BD26E8 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */; };
@@ -53,6 +55,7 @@
 		086FFDAD2A2A2BAC00456A70 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		086FFDAF2A2A2D5400456A70 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 		087C743E2A3C662500D86780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		087C743F2A3C9A7B00D86780 /* integratingChatGpt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = integratingChatGpt.swift; path = FlowChat/features/integratingChatGpt.swift; sourceTree = SOURCE_ROOT; };
 		0887D07C2A3882DE00F57319 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		0898F2312A2B348D00BD26E8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0898F2332A2B5F5300BD26E8 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				086FFD9B2A2A014D00456A70 /* FirebaseAuth in Frameworks */,
+				087C74432A3C9B3500D86780 /* OpenAISwift in Frameworks */,
 				086FFD9D2A2A014D00456A70 /* FirebaseFirestore in Frameworks */,
 				086FFD9F2A2A014D00456A70 /* FirebaseFirestoreSwift in Frameworks */,
 				08BC392A2A2BB7FF00C4F8D3 /* Lottie in Frameworks */,
@@ -130,6 +134,7 @@
 		086FFDAB2A2A19A600456A70 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				087C743F2A3C9A7B00D86780 /* integratingChatGpt.swift */,
 				089C541E2A3485950075E015 /* chatItemView.swift */,
 				08BC392B2A2BB94300C4F8D3 /* lottie */,
 				086FFD932A29303D00456A70 /* Colors.swift */,
@@ -189,6 +194,7 @@
 				086FFD9C2A2A014D00456A70 /* FirebaseFirestore */,
 				086FFD9E2A2A014D00456A70 /* FirebaseFirestoreSwift */,
 				08BC39292A2BB7FF00C4F8D3 /* Lottie */,
+				087C74422A3C9B3500D86780 /* OpenAISwift */,
 			);
 			productName = FlowChat;
 			productReference = 086FFD822A29302C00456A70 /* FlowChat.app */;
@@ -221,6 +227,7 @@
 			packageReferences = (
 				086FFD992A2A014D00456A70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				08BC39282A2BB7FF00C4F8D3 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				087C74412A3C9B3500D86780 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
 			);
 			productRefGroup = 086FFD832A29302C00456A70 /* Products */;
 			projectDirPath = "";
@@ -264,6 +271,7 @@
 				0898F2322A2B348D00BD26E8 /* MainView.swift in Sources */,
 				083E27232A35044F00460937 /* FullChatView.swift in Sources */,
 				086FFDAA2A2A168E00456A70 /* ImagePicker.swift in Sources */,
+				087C74402A3C9A7B00D86780 /* integratingChatGpt.swift in Sources */,
 				086FFDA42A2A0E8B00456A70 /* LoginView.swift in Sources */,
 				086FFDA22A2A032700456A70 /* StartView.swift in Sources */,
 				089C541F2A3485950075E015 /* chatItemView.swift in Sources */,
@@ -485,6 +493,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		087C74412A3C9B3500D86780 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamrushy/OpenAISwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		08BC39282A2BB7FF00C4F8D3 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm";
@@ -510,6 +526,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 086FFD992A2A014D00456A70 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		087C74422A3C9B3500D86780 /* OpenAISwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 087C74412A3C9B3500D86780 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			productName = OpenAISwift;
 		};
 		08BC39292A2BB7FF00C4F8D3 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
