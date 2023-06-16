@@ -266,8 +266,7 @@ struct MainView: View {
             .padding(.horizontal,20)
             HStack{
                 Text("48 Messages")
-                    .fontWeight(.bold)
-                    .font(.title)
+                    .font(.custom("Marker Felt", size: 30))
                     .foregroundColor(.orange)
                 Spacer()
             }
