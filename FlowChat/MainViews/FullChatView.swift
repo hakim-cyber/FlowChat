@@ -13,6 +13,8 @@ struct FullChatView: View {
     @Environment(\.dismiss) var dismiss
     var chat:Chat
     @State private var messages = [Message]()
+    
+    @State private var showingChatGpt = false
    
     @State private var newMessageText = ""
     @State private var screen = UIScreen.main.bounds.size
@@ -75,7 +77,7 @@ struct FullChatView: View {
                
             }
             .frame(maxWidth: .infinity , maxHeight: .infinity , alignment: .top)
-            
+            .padding(.top,10)
            
           
                 
@@ -98,85 +100,102 @@ struct FullChatView: View {
         }
         .safeAreaInset(edge: .bottom){
             VStack{
-                HStack(alignment: .center,spacing: 10){
-                    
-                    
-                    Menu{
-                        //features
+                if !showingChatGpt{
+                    HStack(alignment: .center,spacing: 10){
                         
-                        Button("Cancel", role: .destructive){
+                        
+                        Menu{
+                            //features
                             
-                        }
-                        Button{
-                            //generate text
-                            
-                        }label:{
-                            HStack{
-                                Text(" Text Generator  🤖")
-                               
-                            }
-                          
+                            Button("Cancel", role: .destructive){
                                 
+                            }
+                            Button{
+                                //generate text
+                                withAnimation(.easeInOut){
+                                    self.showingChatGpt = true
+                                }
+                            }label:{
+                                HStack{
+                                    Text(" Text Generator  🤖")
+                                    
+                                }
+                                
+                                
+                            }
+                            
+                            Button{
+                                // generate Joke
+                                
+                            }label:{
+                                HStack{
+                                    Text(" Joke Generator  🤡")
+                                    
+                                }
+                            }
+                            Button{
+                                // automate task
+                                
+                            }label:{
+                                HStack{
+                                    Text(" Task Automate  ♼")
+                                    
+                                }
+                            }
+                            
+                        }label: {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(.purple)
+                                .frame(width: screen.width * 0.20/4)
                         }
                         
-                        Button{
-                            // generate Joke
-                            
-                        }label:{
-                            HStack{
-                                Text(" Joke Generator  🤡")
-                               
-                            }
-                        }
-                        Button{
-                            // automate task
-                            
-                        }label:{
-                            HStack{
-                                Text(" Task Automate  ♼")
-                               
-                            }
-                        }
                         
-                    }label: {
-                        Image(systemName: "plus")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.purple)
-                            .frame(width: screen.width * 0.20/4)
+                        TextField("Write Message", text: $newMessageText,axis:.vertical)
+                            .padding(10)
+                            .background(.thinMaterial)
+                            .lineLimit(4)
+                            .cornerRadius(20)
+                            .shadow(color:.gray,radius: 5)
+                            .frame(width: screen.width / 1.3)
+                            .textFieldStyle(.plain)
+                            .multilineTextAlignment(.leading)
+                            .focused($messagefocused)
+                        
+                        
+                        
+                        Button{
+                            //send
+                            withAnimation(.easeInOut){
+                                sendMessage()
+                                self.messagefocused = false
+                            }
+                        }label: {
+                            Image(systemName: "airplane.departure")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(.purple)
+                                .frame(width: screen.width * 0.20/3)
+                        }
+                        .disabled(newMessageText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                        
+                        
                     }
-                  
-                    
-                    TextField("Write Message", text: $newMessageText,axis:.vertical)
-                        .padding(10)
-                        .background(.thinMaterial)
-                        .lineLimit(4)
-                        .cornerRadius(20)
-                        .shadow(color:.gray,radius: 5)
-                        .frame(width: screen.width / 1.3)
-                        .textFieldStyle(.plain)
-                        .multilineTextAlignment(.leading)
-                        .focused($messagefocused)
-                    
-                    
-                    
-                    Button{
-                        //send
+                    .transition(.move(edge: .bottom))
+                }else{
+                    integratingChatGpt(){output in
                         withAnimation(.easeInOut){
-                            sendMessage()
-                            self.messagefocused = false
+                            if output == ""{
+                                
+                            }else{
+                                self.newMessageText = output
+                            }
+                            self.showingChatGpt = false
                         }
-                    }label: {
-                        Image(systemName: "airplane.departure")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.purple)
-                            .frame(width: screen.width * 0.20/3)
                     }
-                    .disabled(newMessageText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-                    
+                    .transition(.move(edge: .bottom))
                 }
-                
             }
         }
         .safeAreaInset(edge: .top){

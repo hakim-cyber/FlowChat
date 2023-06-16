@@ -38,6 +38,7 @@ struct integratingChatGpt: View {
     @StateObject var viewModel = ChatGptViewModel()
     @State  var screen = UIScreen.main.bounds.size
     @State  var inputText = ""
+    @FocusState var textFocused
     @State  var outputText = ""
     var body: some View {
         VStack{
@@ -49,12 +50,16 @@ struct integratingChatGpt: View {
                         .padding(10)
                         .lineLimit(3)
                         .background(RoundedRectangle(cornerRadius: 15).stroke(.gray))
+                        .focused(self.$textFocused)
                         
                     Button{
                         self.viewModel.send(text: inputText){text in
                             DispatchQueue.main.async {
-                                self.outputText = text
-                                self.inputText = ""
+                                withAnimation(.easeInOut){
+                                    self.outputText = text
+                                    self.inputText = ""
+                                    self.textFocused = false
+                                }
                             }
                            
                         }
@@ -80,16 +85,23 @@ struct integratingChatGpt: View {
                     // next
                   complete(outputText)
                 }label: {
-                    Text("Done")
-                        .foregroundColor(.white)
-                        .padding(.horizontal)
-                      
+                    if  self.outputText == ""{
+                       
+                        Text("Back")
+                            .foregroundColor(.white)
+                            .padding(.horizontal)
+                    
+                    }else{
+                        Text("Done")
+                            .foregroundColor(.white)
+                            .padding(.horizontal)
+                    }
                 
                        
                         
                 }
-                .disabled(self.outputText == "")
                 .buttonStyle(.borderedProminent)
+                .tint( self.outputText == "" ? .orange : .blue)
                 .padding(.vertical,5)
                 
                 
@@ -99,7 +111,7 @@ struct integratingChatGpt: View {
             .frame(maxWidth: .infinity,maxHeight:.infinity)
             .background(.white)
             .roundedCorner(25, corners: [.topLeft,.topRight])
-            .frame(width: screen.width,height: screen.height * 0.35)
+            .frame(width: screen.width,height:  textFocused == true ? screen.height * 0.50 : screen.height * 0.35 )
         }
         .foregroundColor(.black)
         .ignoresSafeArea()
